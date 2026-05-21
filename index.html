@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CLAUDE-20 | Mint</title>
 
 <style>
@@ -26,8 +24,6 @@ body{
   padding:20px;
   min-height:100vh;
 }
-
-/* ───────────────── HEADER ───────────────── */
 
 .header{
   display:flex;
@@ -89,8 +85,6 @@ body{
   flex-shrink:0;
 }
 
-/* ───────────────── TABS ───────────────── */
-
 .tabs{
   display:flex;
   gap:8px;
@@ -114,8 +108,6 @@ body{
   color:#fff;
 }
 
-/* ───────────────── PAGE ───────────────── */
-
 .page{
   display:none;
 }
@@ -123,8 +115,6 @@ body{
 .page.active{
   display:block;
 }
-
-/* ───────────────── GRID ───────────────── */
 
 .two-col{
   display:grid;
@@ -147,9 +137,11 @@ body{
     font-size:42px;
   }
 
-}
+  .fields-grid{
+    grid-template-columns:1fr;
+  }
 
-/* ───────────────── PANELS ───────────────── */
+}
 
 .panel{
   border:1.5px solid #111;
@@ -196,8 +188,6 @@ body{
   margin-bottom:18px;
 }
 
-/* ───────────────── INFO ROW ───────────────── */
-
 .info-row{
   display:flex;
   justify-content:space-between;
@@ -213,8 +203,6 @@ body{
 .value{
   font-weight:700;
 }
-
-/* ───────────────── PROGRESS ───────────────── */
 
 .progress-wrap{
   margin-top:18px;
@@ -239,8 +227,6 @@ body{
   color:#555;
   line-height:1.8;
 }
-
-/* ───────────────── BUTTONS ───────────────── */
 
 .btn-row{
   display:flex;
@@ -276,8 +262,6 @@ body{
   letter-spacing:3px;
   font-size:14px;
 }
-
-/* ───────────────── ACTIVITY ───────────────── */
 
 .activity-item{
   display:flex;
@@ -341,8 +325,6 @@ body{
   display:inline-block;
 }
 
-/* ───────────────── STATUS ROW ───────────────── */
-
 .status-box{
   margin-top:14px;
   border-top:1px solid #ccc;
@@ -369,7 +351,9 @@ body{
   color:#c95a00;
 }
 
-/* ───────────────── JSON ───────────────── */
+.green{
+  color:#0c8b54;
+}
 
 .json-box{
   background:#f6f1e5;
@@ -381,8 +365,6 @@ body{
   white-space:pre-wrap;
   margin-bottom:14px;
 }
-
-/* ───────────────── DEPLOY ───────────────── */
 
 .deploy-card{
   border:1.5px solid #111;
@@ -486,8 +468,6 @@ body{
   gap:10px;
 }
 
-/* ───────────────── TABLE ───────────────── */
-
 .token-table{
   width:100%;
   border-collapse:collapse;
@@ -529,8 +509,6 @@ body{
   display:inline-block;
 }
 
-/* ───────────────── OVERVIEW ───────────────── */
-
 .overview-text{
   line-height:2;
   color:#333;
@@ -562,67 +540,59 @@ footer{
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
 
-  <div class="header-left">
+<div class="header-left">
 
-    <div class="logo-box">
-      C20
-    </div>
+<div class="logo-box">
+C20
+</div>
 
-    <div class="header-title">
+<div class="header-title">
 
-      <h1>CLAUDE-20</h1>
+<h1>CLAUDE-20</h1>
 
-      <p>
-        A Base-native inscription mint protocol with fixed supply mechanics.
-      </p>
+<p>
+A Base-native inscription mint protocol with fixed supply mechanics.
+</p>
 
-      <div class="protocol-meta">
-        BASE L2 • INSCRIPTION STANDARD • PUBLIC MINT
-      </div>
-
-    </div>
-
-  </div>
-
-  <button class="x-btn" onclick="window.open('https://x.com','_blank')">
-    𝕏
-  </button>
+<div class="protocol-meta">
+BASE L2 • INSCRIPTION STANDARD • PUBLIC MINT
+</div>
 
 </div>
 
-<!-- TABS -->
+</div>
+
+<button class="x-btn" onclick="window.open('https://x.com','_blank')">
+𝕏
+</button>
+
+</div>
 
 <div class="tabs">
 
-  <button class="tab active" onclick="showPage('mint',this)">
-    MINT
-  </button>
+<button class="tab active" onclick="showPage('mint',this)">
+MINT
+</button>
 
-  <button class="tab" onclick="showPage('deploy',this)">
-    DEPLOY
-  </button>
+<button class="tab" onclick="showPage('deploy',this)">
+DEPLOY
+</button>
 
-  <button class="tab" onclick="showPage('launched',this)">
-    LAUNCHED
-  </button>
+<button class="tab" onclick="showPage('launched',this)">
+LAUNCHED
+</button>
 
-  <button class="tab" onclick="showPage('overview',this)">
-    OVERVIEW
-  </button>
+<button class="tab" onclick="showPage('overview',this)">
+OVERVIEW
+</button>
 
 </div>
-
-<!-- MINT PAGE -->
 
 <div id="page-mint" class="page active">
 
 <div class="two-col">
-
-<!-- LEFT -->
 
 <div class="panel">
 
@@ -671,12 +641,13 @@ Amount credited to your wallet on successful inscription.
 <div class="progress-wrap">
 
 <div class="progress-bg">
-<div class="progress-fill"></div>
+<div class="progress-fill" id="progress-fill"></div>
 </div>
 
 <div class="progress-label">
-0 / 15,000,000 public CLAUDE minted &nbsp;&nbsp;
-<strong>0%</strong> minted
+<span id="minted-text">0 / 15,000,000 public CLAUDE minted</span>
+&nbsp;&nbsp;
+<strong id="mint-percent">0%</strong> minted
 </div>
 
 </div>
@@ -687,11 +658,11 @@ Liquidity reserve is separate: 6,000,000 CLAUDE is not counted in this bar.
 
 <div class="btn-row">
 
-<button class="btn">
+<button class="btn" id="connect-btn" onclick="connectWallet()">
 CONNECT<br>WALLET
 </button>
 
-<button class="btn btn-dark">
+<button class="btn btn-dark" onclick="fakeMint()">
 MINT<br>INSCRIPTION
 </button>
 
@@ -702,21 +673,15 @@ MINTING
 </div>
 
 <div class="panel-desc">
-
 Mint transaction is sent as an on-chain CLAUDE-20 JSON inscription.
 The protocol mints the ERC-20 balance and tracks the public cap.
-
 </div>
 
 </div>
 
 </div>
-
-<!-- RIGHT -->
 
 <div style="display:flex;flex-direction:column;gap:14px;">
-
-<!-- ACTIVITY -->
 
 <div class="panel">
 
@@ -741,71 +706,16 @@ CLAUDE official pool launched
 <span class="live-dot"></span>
 </div>
 
+<div id="activity-feed">
+
 <div class="activity-item">
-
-<span class="act-badge act-pool">
-POOL
-</span>
-
+<span class="act-badge act-pool">POOL</span>
 <div class="act-info">
 <span>POOL LAUNCHED</span>
 <span class="act-hash">0xED49...C92A</span>
 </div>
-
-<span class="act-block">
-BLOCK 25145308
-</span>
-
+<span class="act-block">BLOCK 25145308</span>
 </div>
-
-<div class="activity-item">
-
-<span class="act-badge act-ready">
-READY
-</span>
-
-<div class="act-info">
-<span>SOLD OUT</span>
-<span class="act-hash">0xF2AB...BAC8</span>
-</div>
-
-<span class="act-block">
-BLOCK 25145293
-</span>
-
-</div>
-
-<div class="activity-item">
-
-<span class="act-badge act-mint">
-MINT
-</span>
-
-<div class="act-info">
-<span>100 CLAUDE</span>
-<span class="act-hash">0x08C8...F893</span>
-</div>
-
-<span class="act-block">
-BLOCK 25145293
-</span>
-
-</div>
-
-<div class="activity-item">
-
-<span class="act-badge act-mint">
-MINT
-</span>
-
-<div class="act-info">
-<span>100 CLAUDE</span>
-<span class="act-hash">0xY0D6A...18A9</span>
-</div>
-
-<span class="act-block">
-BLOCK 25145293
-</span>
 
 </div>
 
@@ -813,17 +723,17 @@ BLOCK 25145293
 
 <div class="status-row">
 <span class="s-label">provider</span>
-<span class="s-val orange">missing</span>
+<span class="s-val orange" id="provider-status">missing</span>
 </div>
 
 <div class="status-row">
 <span class="s-label">wallet</span>
-<span class="s-val orange">offline</span>
+<span class="s-val orange" id="wallet-status">offline</span>
 </div>
 
 <div class="status-row">
 <span class="s-label">protocol</span>
-<span class="s-val">0x7b5D...80c0</span>
+<span class="s-val green">online</span>
 </div>
 
 </div>
@@ -831,8 +741,6 @@ BLOCK 25145293
 </div>
 
 </div>
-
-<!-- JSON -->
 
 <div class="panel">
 
@@ -850,28 +758,13 @@ INSCRIPTION / JSON
 
 <div class="panel-body">
 
-<div class="json-box">
+<div class="json-box" id="json-box">
 { "p":"claude-20", "op":"mint", "tick":"CLAUDE", "amt":"100", "chain":"base", "fee":"0.20" }
 </div>
 
 <div class="btn-row">
-
-<button class="btn">
-COPY MINT JSON
-</button>
-
-<button class="btn">
-COPY DEPLOY JSON
-</button>
-
-</div>
-
-<div class="btn-row" style="margin-top:10px;">
-
-<button class="btn">
-REFRESH
-</button>
-
+<button class="btn" onclick="copyMintJSON()">COPY MINT JSON</button>
+<button class="btn" onclick="copyDeployJSON()">COPY DEPLOY JSON</button>
 </div>
 
 </div>
@@ -883,262 +776,87 @@ REFRESH
 </div>
 
 </div>
-
-<!-- DEPLOY -->
 
 <div id="page-deploy" class="page">
-
 <div class="deploy-card">
-
-<div class="deploy-sidebar">
-<span>LAUNCHPAD</span>
-</div>
-
+<div class="deploy-sidebar"><span>LAUNCHPAD</span></div>
 <div class="deploy-inner">
-
-<div class="coming">
-COMING SOON
-</div>
-
-<div class="deploy-num">
-02
-</div>
-
-<div class="deploy-label">
-NEW INSCRIPTION BLUEPRINT
-</div>
-
-<div class="deploy-title">
-DEPLOY YOUR OWN<br>CLAUDE-20
-</div>
-
+<div class="coming">COMING SOON</div>
+<div class="deploy-num">02</div>
+<div class="deploy-label">NEW INSCRIPTION BLUEPRINT</div>
+<div class="deploy-title">DEPLOY YOUR OWN<br>CLAUDE-20</div>
 <div class="fields-grid">
-
-<div class="field-box">
-<div class="field-name">NAME</div>
-<div class="field-value">Claude20</div>
-<div class="field-hint">ERC-20 display name</div>
+<div class="field-box"><div class="field-name">NAME</div><div class="field-value">Claude20</div><div class="field-hint">ERC-20 display name</div></div>
+<div class="field-box"><div class="field-name">TICKER</div><div class="field-value">CLAUDE</div><div class="field-hint">4-8 characters</div></div>
+<div class="field-box"><div class="field-name">TOTAL SUPPLY</div><div class="field-value">21000000</div><div class="field-hint">whole token units</div></div>
+<div class="field-box"><div class="field-name">MINT LIMIT</div><div class="field-value">100</div><div class="field-hint">tokens per inscription</div></div>
+<div class="field-box"><div class="field-name">PUBLIC ALLOCATION</div><div class="field-value">15000000</div><div class="field-hint">tracked by mint progress</div></div>
+<div class="field-box"><div class="field-name">LIQUIDITY RESERVE</div><div class="field-value">6000000</div><div class="field-hint">excluded from mint progress</div></div>
 </div>
-
-<div class="field-box">
-<div class="field-name">TICKER</div>
-<div class="field-value">CLAUDE</div>
-<div class="field-hint">4-8 characters</div>
 </div>
-
-<div class="field-box">
-<div class="field-name">TOTAL SUPPLY</div>
-<div class="field-value">21000000</div>
-<div class="field-hint">whole token units</div>
 </div>
-
-<div class="field-box">
-<div class="field-name">MINT LIMIT</div>
-<div class="field-value">100</div>
-<div class="field-hint">tokens per inscription</div>
 </div>
-
-<div class="field-box">
-<div class="field-name">PUBLIC ALLOCATION</div>
-<div class="field-value">15000000</div>
-<div class="field-hint">tracked by mint progress</div>
-</div>
-
-<div class="field-box">
-<div class="field-name">LIQUIDITY RESERVE</div>
-<div class="field-value">6000000</div>
-<div class="field-hint">excluded from mint progress</div>
-</div>
-
-<div class="field-box">
-<div class="field-name">POOL FEE</div>
-<div class="field-value">2 / 2</div>
-<div class="field-hint">set by protocol</div>
-</div>
-
-<div class="field-box">
-<div class="field-name">CHAIN</div>
-<div class="field-value">BASE</div>
-<div class="field-hint">layer 2 network</div>
-</div>
-
-</div>
-
-<div class="deploy-note">
-
-<span>
-DEPLOY COMMAND DISABLED FOR GENESIS RELEASE
-</span>
-
-<span>
-RESERVE TOKENS EXCLUDED FROM PUBLIC CAP
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- LAUNCHED -->
 
 <div id="page-launched" class="page">
-
 <div class="panel">
-
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
 LAUNCHED TOKENS
-
 </div>
-
 <div class="panel-body">
-
 <table class="token-table">
-
 <tr>
 <th>TOKEN</th>
 <th>MINTED</th>
 <th>LIQUIDITY</th>
 <th>STATUS</th>
 </tr>
-
 <tr>
-
 <td>
 <div class="token-name">CLAUDE</div>
 <div class="token-addr">0x7116...CF26</div>
 </td>
-
-<td>
-15,000,000 / 15,000,000
-</td>
-
-<td>
-6,000,000
-</td>
-
-<td>
-<span class="status-launched">
-POOL LAUNCHED
-</span>
-</td>
-
+<td>15,000,000 / 15,000,000</td>
+<td>6,000,000</td>
+<td><span class="status-launched">POOL LAUNCHED</span></td>
 </tr>
-
 </table>
-
 </div>
-
 </div>
-
 </div>
-
-<!-- OVERVIEW -->
 
 <div id="page-overview" class="page">
-
 <div class="two-col">
-
 <div class="panel">
-
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
 WHAT / CLAUDE20
-
 </div>
-
 <div class="panel-body">
-
 <div class="overview-text">
-
-<p>
-CLAUDE-20 is a Base-native inscription mint protocol
-with a fixed supply of 21 million tokens.
-</p>
-
-<p>
-Public mint allocation is capped at 15 million CLAUDE,
-while 6 million tokens remain reserved for liquidity
-provisioning and protocol launch mechanics.
-</p>
-
-<p>
-Mint transactions generate an on-chain JSON inscription
-which tracks mint progress and public supply allocation.
-</p>
-
+<p>CLAUDE-20 is a Base-native inscription mint protocol with a fixed supply of 21 million tokens.</p>
+<p>Public mint allocation is capped at 15 million CLAUDE, while 6 million tokens remain reserved for liquidity provisioning and protocol launch mechanics.</p>
+<p>Mint transactions generate an on-chain JSON inscription which tracks mint progress and public supply allocation.</p>
 </div>
-
 </div>
-
 </div>
 
 <div class="panel">
-
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
 SUPPLY
-
 </div>
-
 <div class="panel-body">
-
 <div class="supply-box">
-
-<div class="supply-row">
-<span class="s-label">Mint Size</span>
-<span>100 CLAUDE</span>
+<div class="supply-row"><span class="s-label">Mint Size</span><span>100 CLAUDE</span></div>
+<div class="supply-row"><span class="s-label">Public Cap</span><span>15,000,000 CLAUDE</span></div>
+<div class="supply-row"><span class="s-label">Liquidity Reserve</span><span>6,000,000 CLAUDE</span></div>
+<div class="supply-row"><span class="s-label">Total Supply</span><span>21,000,000 CLAUDE</span></div>
+<div class="supply-row"><span class="s-label">Cost</span><span>0.20 USD in ETH</span></div>
 </div>
-
-<div class="supply-row">
-<span class="s-label">Public Cap</span>
-<span>15,000,000 CLAUDE</span>
 </div>
-
-<div class="supply-row">
-<span class="s-label">Liquidity Reserve</span>
-<span>6,000,000 CLAUDE</span>
 </div>
-
-<div class="supply-row">
-<span class="s-label">Total Supply</span>
-<span>21,000,000 CLAUDE</span>
 </div>
-
-<div class="supply-row">
-<span class="s-label">Cost</span>
-<span>0.20 USD in ETH</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 <footer>
@@ -1146,6 +864,9 @@ CLAUDE-20 © 2026
 </footer>
 
 <script>
+
+let minted = 0;
+let maxMint = 15000000;
 
 function showPage(page,btn){
 
@@ -1160,6 +881,129 @@ function showPage(page,btn){
   });
 
   btn.classList.add('active');
+
+}
+
+async function connectWallet(){
+
+  if(typeof window.ethereum === 'undefined'){
+    alert('MetaMask / Coinbase / Bitget Wallet not detected');
+    return;
+  }
+
+  try{
+
+    const accounts = await window.ethereum.request({
+      method:'eth_requestAccounts'
+    });
+
+    const address = accounts[0];
+
+    document.getElementById('connect-btn').innerHTML =
+      address.slice(0,6) + '...' + address.slice(-4);
+
+    document.getElementById('provider-status').innerText = 'online';
+    document.getElementById('provider-status').classList.remove('orange');
+    document.getElementById('provider-status').classList.add('green');
+
+    document.getElementById('wallet-status').innerText = 'connected';
+    document.getElementById('wallet-status').classList.remove('orange');
+    document.getElementById('wallet-status').classList.add('green');
+
+    await switchToBase();
+
+  }catch(err){
+    console.log(err);
+  }
+
+}
+
+async function switchToBase(){
+
+  try{
+
+    await window.ethereum.request({
+      method:'wallet_switchEthereumChain',
+      params:[{ chainId:'0x2105' }]
+    });
+
+  }catch(error){
+
+    try{
+
+      await window.ethereum.request({
+        method:'wallet_addEthereumChain',
+        params:[{
+          chainId:'0x2105',
+          chainName:'Base',
+          nativeCurrency:{
+            name:'ETH',
+            symbol:'ETH',
+            decimals:18
+          },
+          rpcUrls:['https://mainnet.base.org'],
+          blockExplorerUrls:['https://basescan.org']
+        }]
+      });
+
+    }catch(addError){
+      console.log(addError);
+    }
+
+  }
+
+}
+
+function fakeMint(){
+
+  minted += 100;
+
+  const percent = ((minted / maxMint) * 100).toFixed(4);
+
+  document.getElementById('minted-text').innerText =
+    minted.toLocaleString() + ' / 15,000,000 public CLAUDE minted';
+
+  document.getElementById('mint-percent').innerText =
+    percent + '%';
+
+  document.getElementById('progress-fill').style.width =
+    percent + '%';
+
+  const hash = '0x' + Math.random().toString(16).substring(2,10).toUpperCase();
+
+  const activity = document.createElement('div');
+  activity.className = 'activity-item';
+
+  activity.innerHTML = `
+    <span class="act-badge act-mint">MINT</span>
+    <div class="act-info">
+      <span>100 CLAUDE</span>
+      <span class="act-hash">${hash}</span>
+    </div>
+    <span class="act-block">LIVE</span>
+  `;
+
+  document.getElementById('activity-feed').prepend(activity);
+
+}
+
+function copyMintJSON(){
+
+  navigator.clipboard.writeText(
+    '{ "p":"claude-20", "op":"mint", "tick":"CLAUDE", "amt":"100", "chain":"base", "fee":"0.20" }'
+  );
+
+  alert('Mint JSON copied');
+
+}
+
+function copyDeployJSON(){
+
+  navigator.clipboard.writeText(
+    '{ "p":"claude-20", "op":"deploy", "tick":"CLAUDE", "max":"21000000", "lim":"100" }'
+  );
+
+  alert('Deploy JSON copied');
 
 }
 
