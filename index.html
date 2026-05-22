@@ -2,472 +2,418 @@
 <html lang="en">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>CLAUDE-20 | Base Mint</title>
+<title>CLAUDE-20</title>
 
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap');
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-width:100%;
-overflow-x:hidden;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-background:#e2ddd1;
-color:#111;
-font-family:'IBM Plex Mono', monospace;
-font-size:13px;
-padding:14px;
-min-height:100vh;
-width:100%;
-overflow-x:hidden;
+  background:#050505;
+  color:#ff8c1a;
+  font-family:'IBM Plex Mono', monospace;
+  padding:32px;
+  min-height:100vh;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at top left, rgba(255,140,26,0.06), transparent 30%),
+  radial-gradient(circle at bottom right, rgba(0,255,120,0.04), transparent 30%);
+  pointer-events:none;
+}
+
+.container{
+  max-width:1350px;
+  margin:auto;
+  border:1px solid #ff8c1a;
+  padding:26px;
+  position:relative;
 }
 
 .header{
-display:flex;
-justify-content:space-between;
-align-items:flex-start;
-gap:20px;
-margin-bottom:24px;
-width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:28px;
 }
 
-.header-left{
-display:flex;
-align-items:flex-start;
-gap:18px;
+.title{
+  font-size:68px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#ff8c1a;
 }
 
-.logo-box{
-width:72px;
-height:72px;
-border:1.5px solid #111;
-background:#f7f3e8;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:26px;
-font-weight:700;
-letter-spacing:2px;
-flex-shrink:0;
+.subtitle{
+  margin-top:12px;
+  color:#7affb2;
+  line-height:1.8;
+  font-size:13px;
 }
 
-.header-title h1{
-font-size:58px;
-line-height:1;
-letter-spacing:2px;
+.meta{
+  margin-top:10px;
+  color:#888;
+  font-size:11px;
+  letter-spacing:2px;
 }
 
-.header-title p{
-margin-top:10px;
-font-size:13px;
-line-height:1.8;
-color:#444;
-max-width:500px;
-}
-
-.protocol-meta{
-margin-top:8px;
-font-size:10px;
-color:#777;
-letter-spacing:1px;
-}
-
-.x-btn{
-width:52px;
-height:52px;
-border:none;
-background:#111;
-color:#fff;
-font-size:18px;
-cursor:pointer;
-font-family:inherit;
-flex-shrink:0;
+.xbtn{
+  width:52px;
+  height:52px;
+  background:#111;
+  border:1px solid #ff8c1a;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
 }
 
 .tabs{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:18px;
+  display:flex;
+  gap:10px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
 }
 
 .tab{
-border:1.5px solid #111;
-background:#e2ddd1;
-padding:12px 28px;
-font-family:inherit;
-font-size:12px;
-font-weight:700;
-letter-spacing:2px;
-cursor:pointer;
+  background:#111;
+  border:1px solid #ff8c1a;
+  color:#ff8c1a;
+  padding:12px 24px;
+  cursor:pointer;
+  font-family:inherit;
+  letter-spacing:2px;
+  font-size:11px;
 }
 
 .tab.active{
-background:#111;
-color:#fff;
+  background:#ff8c1a;
+  color:#000;
 }
 
 .page{
-display:none;
-width:100%;
+  display:none;
 }
 
 .page.active{
-display:block;
+  display:block;
 }
 
-.two-col{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px;
-align-items:start;
-width:100%;
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
 .panel{
-border:1.5px solid #111;
-background:#ebe6da;
-width:100%;
+  border:1px solid #ff8c1a;
+  background:#0d0d0d;
 }
 
 .panel-header{
-background:#111;
-color:#fff;
-padding:10px 16px;
-display:flex;
-align-items:center;
-gap:8px;
-font-size:11px;
-letter-spacing:3px;
-}
-
-.dots{
-display:flex;
-gap:4px;
-}
-
-.dot{
-width:10px;
-height:10px;
-background:#666;
+  border-bottom:1px solid #ff8c1a;
+  padding:12px 18px;
+  color:#ff8c1a;
+  font-size:12px;
+  letter-spacing:3px;
+  background:#111;
 }
 
 .panel-body{
-padding:26px;
+  padding:24px;
 }
 
 .panel-title{
-font-size:24px;
-font-weight:700;
-margin-bottom:12px;
-letter-spacing:2px;
+  font-size:40px;
+  margin-bottom:14px;
+  color:#ff8c1a;
 }
 
-.panel-desc{
-font-size:12px;
-color:#555;
-line-height:1.9;
-margin-bottom:18px;
+.desc{
+  color:#888;
+  line-height:1.8;
+  margin-bottom:20px;
+  font-size:12px;
 }
 
-.info-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 0;
-border-bottom:1px dashed #b8b1a5;
-font-size:13px;
-gap:20px;
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px dashed #333;
+  font-size:13px;
 }
 
-.label{
-color:#666;
+.row span:last-child{
+  color:#fff;
+  font-weight:700;
 }
 
-.value{
-font-weight:700;
-text-align:right;
+.progress{
+  margin-top:20px;
 }
 
-.progress-wrap{
-margin-top:18px;
-}
-
-.progress-bg{
-width:100%;
-height:12px;
-border:1px solid #999;
-background:#d5d0c6;
-overflow:hidden;
+.progress-bar{
+  width:100%;
+  height:16px;
+  border:1px solid #ff8c1a;
+  background:#111;
 }
 
 .progress-fill{
-width:0%;
-height:100%;
-background:#c95a00;
-transition:0.3s;
+  width:8.57%;
+  height:100%;
+  background:#00ff84;
 }
 
-.progress-label{
-margin-top:8px;
-font-size:11px;
-color:#555;
-line-height:1.7;
+.progress-text{
+  margin-top:10px;
+  font-size:12px;
+  color:#bbb;
 }
 
-.btn-row{
-display:flex;
-gap:10px;
-margin-top:22px;
+.btns{
+  display:flex;
+  gap:12px;
+  margin-top:24px;
 }
 
 .btn{
-flex:1;
-border:1.5px solid #111;
-background:#e2ddd1;
-color:#111;
-padding:14px;
-font-family:inherit;
-font-size:11px;
-font-weight:700;
-letter-spacing:2px;
-cursor:pointer;
+  flex:1;
+  padding:14px;
+  border:1px solid #ff8c1a;
+  background:#111;
+  color:#ff8c1a;
+  cursor:pointer;
+  font-family:inherit;
+  letter-spacing:2px;
+  font-size:11px;
 }
 
-.btn-dark{
-background:#111;
-color:#fff;
+.btn:hover{
+  background:#ff8c1a;
+  color:#000;
 }
 
-.status-banner{
-border:2px solid #c95a00;
-color:#c95a00;
-text-align:center;
-padding:12px;
-margin:18px 0;
-font-weight:700;
-letter-spacing:3px;
-font-size:13px;
+.btn-green{
+  background:#00ff84;
+  border-color:#00ff84;
+  color:#000;
 }
 
-.activity-item{
-display:flex;
-align-items:center;
-gap:10px;
-border-bottom:1px solid #d1cabd;
-padding:12px 0;
-font-size:12px;
+.banner{
+  margin-top:20px;
+  border:1px solid #00ff84;
+  padding:14px;
+  text-align:center;
+  color:#00ff84;
+  letter-spacing:3px;
+  background:#06150d;
 }
 
-.activity-item:last-child{
-border-bottom:none;
+.activity{
+  border-bottom:1px solid #222;
+  padding:14px 0;
+  color:#ddd;
+  font-size:12px;
 }
 
-.act-badge{
-padding:5px 10px;
-font-size:10px;
-font-weight:700;
-letter-spacing:2px;
-white-space:nowrap;
-}
-
-.act-mint{
-background:#111;
-color:#fff;
-}
-
-.act-live{
-background:#fff;
-border:1px solid #111;
-}
-
-.act-info{
-display:flex;
-flex-direction:column;
-gap:3px;
-flex:1;
-}
-
-.act-hash{
-color:#666;
-font-size:10px;
-}
-
-.act-block{
-font-size:10px;
-color:#888;
-white-space:nowrap;
-}
-
-.live-dot{
-width:10px;
-height:10px;
-background:#c95a00;
-border-radius:50%;
-display:inline-block;
-}
-
-.status-box{
-margin-top:14px;
-border-top:1px solid #ccc;
-padding-top:14px;
-}
-
-.status-row{
-display:flex;
-justify-content:space-between;
-padding:8px 0;
-border-bottom:1px dashed #ccc;
-font-size:11px;
-}
-
-.s-label{
-color:#666;
-}
-
-.s-val{
-font-weight:700;
-}
-
-.orange{
-color:#c95a00;
+.hash{
+  color:#777;
+  font-size:11px;
+  margin-top:5px;
 }
 
 .green{
-color:#0c8b54;
+  color:#00ff84;
 }
 
-.json-box{
-background:#f6f1e5;
-border:1px solid #ccc;
-padding:18px;
-line-height:1.8;
-font-size:12px;
-overflow-x:auto;
-white-space:pre-wrap;
-margin-bottom:14px;
+.orange{
+  color:#ff8c1a;
+}
+
+.status{
+  margin-top:20px;
+  border-top:1px solid #222;
+  padding-top:12px;
+}
+
+.status-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px dashed #222;
+  font-size:11px;
+}
+
+.json{
+  margin-top:22px;
+  border:1px solid #ff8c1a;
+  background:#111;
+  color:#00ff84;
+  padding:18px;
+  line-height:1.8;
+  font-size:12px;
+  overflow:auto;
+}
+
+.copy-btn{
+  width:100%;
+  margin-top:14px;
+  padding:12px;
+  background:#111;
+  border:1px solid #ff8c1a;
+  color:#ff8c1a;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.deploy-box{
+  border:1px solid #ff8c1a;
+  background:#0d0d0d;
+  padding:30px;
+}
+
+.deploy-title{
+  font-size:46px;
+  margin-bottom:20px;
+}
+
+.deploy-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.deploy-item{
+  border:1px solid #222;
+  background:#111;
+  padding:18px;
+}
+
+.deploy-item h4{
+  color:#888;
+  margin-bottom:8px;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.deploy-item p{
+  color:#fff;
+  font-size:18px;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th{
+  text-align:left;
+  padding:14px;
+  border-bottom:1px solid #ff8c1a;
+  color:#888;
+}
+
+.table td{
+  padding:16px 14px;
+  border-bottom:1px solid #222;
+}
+
+.address{
+  color:#888;
+  font-size:11px;
+  margin-top:6px;
+}
+
+.tag{
+  background:#00ff84;
+  color:#000;
+  padding:6px 10px;
+  display:inline-block;
+  font-size:10px;
+}
+
+.overview{
+  color:#ccc;
+  line-height:2;
+}
+
+.supply{
+  margin-top:18px;
+}
+
+.supply-row{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px dashed #222;
+  padding:12px 0;
 }
 
 footer{
-margin-top:34px;
-text-align:center;
-color:#777;
-font-size:11px;
-padding-bottom:20px;
+  margin-top:30px;
+  text-align:center;
+  color:#666;
+  font-size:11px;
 }
 
 @media(max-width:900px){
 
-body{
-padding:10px;
-}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.header{
-flex-direction:column;
-align-items:flex-start;
-}
+  .deploy-grid{
+    grid-template-columns:1fr;
+  }
 
-.header-left{
-flex-direction:column;
-gap:14px;
-}
-
-.logo-box{
-width:58px;
-height:58px;
-font-size:22px;
-}
-
-.header-title h1{
-font-size:34px;
-}
-
-.header-title p{
-font-size:12px;
-max-width:100%;
-}
-
-.two-col{
-grid-template-columns:1fr;
-gap:14px;
-}
-
-.panel-body{
-padding:18px;
-}
-
-.info-row{
-font-size:11px;
-}
-
-.value{
-font-size:11px;
-}
-
-.btn-row{
-flex-direction:column;
-}
-
-.btn{
-width:100%;
-}
-
-.json-box{
-font-size:10px;
-}
-
-.tab{
-padding:10px 18px;
-font-size:11px;
-}
+  .title{
+    font-size:48px;
+  }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
+<div class="container">
+
 <div class="header">
 
-<div class="header-left">
+<div>
 
-<div class="logo-box">
-C20
+<div class="title">
+CLAUDE-20
 </div>
 
-<div class="header-title">
+<div class="subtitle">
+Bitcoin-inspired inscription mint protocol on Base.
+</div>
 
-<h1>CLAUDE-20</h1>
-
-<p>
-Base-native mint protocol with fixed 21M token supply mechanics.
-Mint directly on Base network with low fees.
-</p>
-
-<div class="protocol-meta">
+<div class="meta">
 BASE L2 • PUBLIC MINT • 21M SUPPLY
 </div>
 
 </div>
 
-</div>
-
-<button class="x-btn" onclick="window.open('https://x.com','_blank')">
-X
+<button class="xbtn"
+onclick="window.open('https://x.com/iamalien000','_blank')">
+𝕏
 </button>
 
 </div>
@@ -478,210 +424,175 @@ X
 MINT
 </button>
 
+<button class="tab" onclick="showPage('deploy',this)">
+DEPLOY
+</button>
+
+<button class="tab" onclick="showPage('launched',this)">
+LAUNCHED
+</button>
+
 <button class="tab" onclick="showPage('overview',this)">
 OVERVIEW
 </button>
 
 </div>
 
+<!-- MINT PAGE -->
+
 <div id="page-mint" class="page active">
 
-<div class="two-col">
+<div class="grid">
 
 <div class="panel">
 
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
 MINT.CLAUDE20
-
 </div>
 
 <div class="panel-body">
 
 <div class="panel-title">
-— MINT CLAUDE20
+MINT CLAUDE20
 </div>
 
-<div class="panel-desc">
-Mint directly on Base chain.  
+<div class="desc">
+Mint directly on Base chain.
 Each mint gives 1000 CLAUDE tokens.
 </div>
 
-<div class="info-row">
-<span class="label">Mint Amount</span>
-<span class="value">1000 CLAUDE</span>
+<div class="row">
+<span>Mint Amount</span>
+<span>1000 CLAUDE</span>
 </div>
 
-<div class="info-row">
-<span class="label">Mint Cost</span>
-<span class="value">0.05 USD in Base ETH</span>
+<div class="row">
+<span>Mint Cost</span>
+<span>0.05 USD in Base ETH</span>
 </div>
 
-<div class="info-row">
-<span class="label">Network</span>
-<span class="value">Base Mainnet</span>
+<div class="row">
+<span>Network</span>
+<span>Base Mainnet</span>
 </div>
 
-<div class="info-row">
-<span class="label">Total Supply</span>
-<span class="value">21,000,000</span>
+<div class="row">
+<span>Total Supply</span>
+<span>21,000,000</span>
 </div>
 
-<div class="progress-wrap">
+<div class="progress">
 
-<div class="progress-bg">
+<div class="progress-bar">
 <div class="progress-fill" id="progress-fill"></div>
 </div>
 
-<div class="progress-label">
-
+<div class="progress-text">
 <span id="minted-text">
-0 / 21,000,000 CLAUDE minted
+1,800,000 / 21,000,000 CLAUDE minted
 </span>
 
 &nbsp;&nbsp;
 
-<strong id="mint-percent">
-0%
-</strong>
-
-minted
-
+<span id="mint-percent">
+8.57%
+</span> minted
 </div>
 
 </div>
 
-<div class="btn-row">
+<div class="btns">
 
-<button class="btn" id="connect-btn" onclick="connectWallet()">
+<button class="btn" id="connect-btn"
+onclick="connectWallet()">
 CONNECT WALLET
 </button>
 
-<button class="btn btn-dark" onclick="fakeMint()">
+<button class="btn btn-green"
+onclick="fakeMint()">
 MINT 1000
 </button>
 
 </div>
 
-<div class="status-banner">
+<div class="banner">
 LIVE MINT
 </div>
 
-<div class="panel-desc">
-Minting happens directly through Base network.
-Fixed supply capped at 21 million tokens.
 </div>
 
 </div>
 
-</div>
-
-<div style="display:flex;flex-direction:column;gap:16px;">
+<div>
 
 <div class="panel">
 
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
-LIVE ACTIVITY
-
-<span class="live-dot"></span>
-
+LIVE ACTIVITY ●
 </div>
 
 <div class="panel-body">
 
 <div id="activity-feed">
 
-<div class="activity-item">
-
-<span class="act-badge act-live">
+<div class="activity">
+0x7ab... minted 1000 CLAUDE
+<div class="hash">
 LIVE
-</span>
-
-<div class="act-info">
-<span>CLAUDE-20 PUBLIC MINT OPEN</span>
-<span class="act-hash">BASE NETWORK</span>
+</div>
 </div>
 
-<span class="act-block">
-ONLINE
-</span>
+<div class="activity">
+0x91f... minted 1000 CLAUDE
+<div class="hash">
+LIVE
+</div>
+</div>
 
+<div class="activity green">
+POOL LAUNCHED
 </div>
 
 </div>
 
-<div class="status-box">
+<div class="status">
 
 <div class="status-row">
-<span class="s-label">provider</span>
-<span class="s-val orange" id="provider-status">
+<span>provider</span>
+<span class="orange" id="provider-status">
 missing
 </span>
 </div>
 
 <div class="status-row">
-<span class="s-label">wallet</span>
-<span class="s-val orange" id="wallet-status">
+<span>wallet</span>
+<span class="orange" id="wallet-status">
 offline
 </span>
 </div>
 
 <div class="status-row">
-<span class="s-label">protocol</span>
-<span class="s-val green">
+<span>protocol</span>
+<span class="green">
 online
 </span>
 </div>
 
 </div>
 
-</div>
-
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
-MINT JSON
-
-</div>
-
-<div class="panel-body">
-
-<div class="json-box">
+<div class="json" id="json-box">
 {
-"p":"claude-20",
-"op":"mint",
-"tick":"CLAUDE",
-"amt":"1000",
-"chain":"base",
-"fee":"0.05"
+  "p":"claude-20",
+  "op":"mint",
+  "tick":"CLAUDE",
+  "amt":"1000",
+  "chain":"base",
+  "fee":"0.05"
 }
 </div>
 
-<div class="btn-row">
-
-<button class="btn" onclick="copyMintJSON()">
+<button class="copy-btn"
+onclick="copyMintJSON()">
 COPY JSON
 </button>
 
@@ -695,54 +606,179 @@ COPY JSON
 
 </div>
 
+<!-- DEPLOY PAGE -->
+
+<div id="page-deploy" class="page">
+
+<div class="deploy-box">
+
+<div class="deploy-title">
+DEPLOY CLAUDE20
 </div>
 
-<div id="page-overview" class="page">
+<div class="deploy-grid">
+
+<div class="deploy-item">
+<h4>NAME</h4>
+<p>CLAUDE-20</p>
+</div>
+
+<div class="deploy-item">
+<h4>TICKER</h4>
+<p>CLAUDE</p>
+</div>
+
+<div class="deploy-item">
+<h4>TOTAL SUPPLY</h4>
+<p>21000000</p>
+</div>
+
+<div class="deploy-item">
+<h4>MINT LIMIT</h4>
+<p>1000</p>
+</div>
+
+<div class="deploy-item">
+<h4>NETWORK</h4>
+<p>BASE</p>
+</div>
+
+<div class="deploy-item">
+<h4>MINT FEE</h4>
+<p>0.05 USD</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LAUNCHED PAGE -->
+
+<div id="page-launched" class="page">
 
 <div class="panel">
 
 <div class="panel-header">
-
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
-CLAUDE20 OVERVIEW
-
+LAUNCHED TOKENS
 </div>
 
 <div class="panel-body">
 
-<div class="info-row">
-<span class="label">Token Name</span>
-<span class="value">CLAUDE-20</span>
+<table class="table">
+
+<tr>
+<th>TOKEN</th>
+<th>SUPPLY</th>
+<th>STATUS</th>
+</tr>
+
+<tr>
+
+<td>
+CLAUDE
+<div class="address">
+0xbEAECCe2f6C4C2Bb57B640B663714D58Fc912e7D
+</div>
+</td>
+
+<td>
+21,000,000
+</td>
+
+<td>
+<span class="tag">
+LIVE
+</span>
+</td>
+
+</tr>
+
+</table>
+
 </div>
 
-<div class="info-row">
-<span class="label">Ticker</span>
-<span class="value">CLAUDE</span>
 </div>
 
-<div class="info-row">
-<span class="label">Total Supply</span>
-<span class="value">21,000,000</span>
 </div>
 
-<div class="info-row">
-<span class="label">Per Mint</span>
-<span class="value">1000 CLAUDE</span>
+<!-- OVERVIEW -->
+
+<div id="page-overview" class="page">
+
+<div class="grid">
+
+<div class="panel">
+
+<div class="panel-header">
+CLAUDE20 OVERVIEW
 </div>
 
-<div class="info-row">
-<span class="label">Mint Fee</span>
-<span class="value">0.05 USD</span>
+<div class="panel-body">
+
+<div class="overview">
+
+<p>
+CLAUDE-20 is a Base-native inscription mint protocol
+with a fixed supply of 21 million tokens.
+</p>
+
+<p>
+All 21 million CLAUDE tokens are publicly mintable
+on Base network.
+</p>
+
+<p>
+Mint transactions generate an on-chain JSON
+inscription which tracks mint progress.
+</p>
+
 </div>
 
-<div class="info-row">
-<span class="label">Network</span>
-<span class="value">Base</span>
+</div>
+
+</div>
+
+<div class="panel">
+
+<div class="panel-header">
+SUPPLY
+</div>
+
+<div class="panel-body">
+
+<div class="supply">
+
+<div class="supply-row">
+<span>Mint Size</span>
+<span>1000 CLAUDE</span>
+</div>
+
+<div class="supply-row">
+<span>Total Supply</span>
+<span>21,000,000</span>
+</div>
+
+<div class="supply-row">
+<span>Mint Cost</span>
+<span>0.05 USD</span>
+</div>
+
+<div class="supply-row">
+<span>Chain</span>
+<span>Base</span>
+</div>
+
+<div class="supply-row">
+<span>Contract</span>
+<span>
+0xbEAE...2e7D
+</span>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -755,155 +791,182 @@ CLAUDE20 OVERVIEW
 CLAUDE-20 © 2026
 </footer>
 
+</div>
+
 <script>
 
-let minted = 0;
+let minted = 1800000;
 let maxMint = 21000000;
 
 function showPage(page,btn){
 
-document.querySelectorAll('.page').forEach(p=>{
-p.classList.remove('active');
-});
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.remove('active');
+  });
 
-document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('page-'+page)
+  .classList.add('active');
 
-document.querySelectorAll('.tab').forEach(t=>{
-t.classList.remove('active');
-});
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.classList.remove('active');
+  });
 
-btn.classList.add('active');
+  btn.classList.add('active');
 
 }
 
 async function connectWallet(){
 
-if(typeof window.ethereum === 'undefined'){
+  if(typeof window.ethereum === 'undefined'){
+    alert('MetaMask / Coinbase / Bitget Wallet not detected');
+    return;
+  }
 
-alert('Wallet not detected');
-return;
+  try{
 
-}
+    const accounts =
+    await window.ethereum.request({
+      method:'eth_requestAccounts'
+    });
 
-try{
+    const address = accounts[0];
 
-const accounts = await window.ethereum.request({
-method:'eth_requestAccounts'
-});
+    document.getElementById('connect-btn')
+    .innerHTML =
+    address.slice(0,6) +
+    '...' +
+    address.slice(-4);
 
-const address = accounts[0];
+    document.getElementById('provider-status')
+    .innerText = 'online';
 
-document.getElementById('connect-btn').innerHTML =
-address.slice(0,6) + '...' + address.slice(-4);
+    document.getElementById('provider-status')
+    .classList.remove('orange');
 
-document.getElementById('provider-status').innerText = 'online';
+    document.getElementById('provider-status')
+    .classList.add('green');
 
-document.getElementById('wallet-status').innerText = 'connected';
+    document.getElementById('wallet-status')
+    .innerText = 'connected';
 
-await switchToBase();
+    document.getElementById('wallet-status')
+    .classList.remove('orange');
 
-}catch(err){
+    document.getElementById('wallet-status')
+    .classList.add('green');
 
-console.log(err);
+    await switchToBase();
 
-}
+  }catch(err){
+    console.log(err);
+  }
 
 }
 
 async function switchToBase(){
 
-try{
+  try{
 
-await window.ethereum.request({
-method:'wallet_switchEthereumChain',
-params:[{ chainId:'0x2105' }]
-});
+    await window.ethereum.request({
+      method:'wallet_switchEthereumChain',
+      params:[{ chainId:'0x2105' }]
+    });
 
-}catch(error){
+  }catch(error){
 
-try{
+    try{
 
-await window.ethereum.request({
-method:'wallet_addEthereumChain',
-params:[{
-chainId:'0x2105',
-chainName:'Base',
-nativeCurrency:{
-name:'ETH',
-symbol:'ETH',
-decimals:18
-},
-rpcUrls:['https://mainnet.base.org'],
-blockExplorerUrls:['https://basescan.org']
-}]
-});
+      await window.ethereum.request({
+        method:'wallet_addEthereumChain',
+        params:[{
+          chainId:'0x2105',
+          chainName:'Base',
+          nativeCurrency:{
+            name:'ETH',
+            symbol:'ETH',
+            decimals:18
+          },
+          rpcUrls:['https://mainnet.base.org'],
+          blockExplorerUrls:[
+            'https://basescan.org'
+          ]
+        }]
+      });
 
-}catch(addError){
+    }catch(addError){
+      console.log(addError);
+    }
 
-console.log(addError);
-
-}
-
-}
+  }
 
 }
 
 function fakeMint(){
 
-minted += 1000;
+  minted += 1000;
 
-if(minted > maxMint){
-minted = maxMint;
-}
+  if(minted > maxMint){
+    minted = maxMint;
+  }
 
-const percent = ((minted / maxMint) * 100).toFixed(4);
+  const percent =
+  ((minted / maxMint) * 100)
+  .toFixed(2);
 
-document.getElementById('minted-text').innerText =
-minted.toLocaleString() + ' / 21,000,000 CLAUDE minted';
+  document.getElementById('minted-text')
+  .innerText =
+  minted.toLocaleString() +
+  ' / 21,000,000 CLAUDE minted';
 
-document.getElementById('mint-percent').innerText =
-percent + '%';
+  document.getElementById('mint-percent')
+  .innerText =
+  percent + '%';
 
-document.getElementById('progress-fill').style.width =
-percent + '%';
+  document.getElementById('progress-fill')
+  .style.width =
+  percent + '%';
 
-const hash =
-'0x' + Math.random().toString(16).substring(2,10).toUpperCase();
+  const hash =
+  '0x' +
+  Math.random()
+  .toString(16)
+  .substring(2,8);
 
-const activity = document.createElement('div');
+  const item =
+  document.createElement('div');
 
-activity.className = 'activity-item';
+  item.className = 'activity';
 
-activity.innerHTML = `
-<span class="act-badge act-mint">
-MINT
-</span>
+  item.innerHTML = `
+    ${hash}... minted 1000 CLAUDE
+    <div class="hash">
+      LIVE
+    </div>
+  `;
 
-<div class="act-info">
-<span>1000 CLAUDE</span>
-<span class="act-hash">${hash}</span>
-</div>
-
-<span class="act-block">
-LIVE
-</span>
-`;
-
-document.getElementById('activity-feed').prepend(activity);
+  document.getElementById('activity-feed')
+  .prepend(item);
 
 }
 
 function copyMintJSON(){
 
-navigator.clipboard.writeText(
-'{ "p":"claude-20","op":"mint","tick":"CLAUDE","amt":"1000","chain":"base","fee":"0.05" }'
-);
+  navigator.clipboard.writeText(
+`{
+  "p":"claude-20",
+  "op":"mint",
+  "tick":"CLAUDE",
+  "amt":"1000",
+  "chain":"base",
+  "fee":"0.05"
+}`
+  );
 
-alert('Mint JSON copied');
+  alert('Mint JSON copied');
 
 }
 
 </script>
 
 </body>
-</html>
+  </html>
