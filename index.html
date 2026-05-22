@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>CLAUDE-20 | Mint</title>
 
 <style>
@@ -11,527 +12,357 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap');
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  background:#e2ddd1;
-  color:#111;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:13px;
-  padding:20px;
-  min-height:100vh;
+background:#e2ddd1;
+color:#111;
+font-family:'IBM Plex Mono', monospace;
+font-size:13px;
+padding:20px;
+min-height:100vh;
 }
 
 .header{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  margin-bottom:22px;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+margin-bottom:22px;
 }
 
 .header-left{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
+display:flex;
+align-items:flex-start;
+gap:18px;
 }
 
 .logo-box{
-  width:72px;
-  height:72px;
-  border:1.5px solid #111;
-  background:#f7f3e8;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:26px;
-  font-weight:700;
-  letter-spacing:2px;
-  flex-shrink:0;
+width:72px;
+height:72px;
+border:1.5px solid #111;
+background:#f7f3e8;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+font-weight:700;
+letter-spacing:2px;
+flex-shrink:0;
 }
 
 .header-title h1{
-  font-size:54px;
-  line-height:1;
-  letter-spacing:2px;
+font-size:54px;
+line-height:1;
+letter-spacing:2px;
 }
 
 .header-title p{
-  margin-top:10px;
-  font-size:13px;
-  line-height:1.8;
-  color:#444;
-  max-width:420px;
+margin-top:10px;
+font-size:13px;
+line-height:1.8;
+color:#444;
+max-width:420px;
 }
 
 .protocol-meta{
-  margin-top:8px;
-  font-size:10px;
-  color:#777;
-  letter-spacing:1px;
+margin-top:8px;
+font-size:10px;
+color:#777;
+letter-spacing:1px;
 }
 
 .x-btn{
-  width:48px;
-  height:48px;
-  border:none;
-  background:#111;
-  color:#fff;
-  font-family:inherit;
-  font-size:18px;
-  cursor:pointer;
-  flex-shrink:0;
+width:48px;
+height:48px;
+border:none;
+background:#111;
+color:#fff;
+font-family:inherit;
+font-size:18px;
+cursor:pointer;
 }
 
 .tabs{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:20px;
 }
 
 .tab{
-  border:1.5px solid #111;
-  background:#e2ddd1;
-  padding:12px 28px;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:2px;
-  cursor:pointer;
+border:1.5px solid #111;
+background:#e2ddd1;
+padding:12px 28px;
+font-family:inherit;
+font-size:13px;
+font-weight:700;
+letter-spacing:2px;
+cursor:pointer;
 }
 
 .tab.active{
-  background:#111;
-  color:#fff;
+background:#111;
+color:#fff;
 }
 
 .page{
-  display:none;
+display:none;
 }
 
 .page.active{
-  display:block;
+display:block;
 }
 
 .two-col{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
 @media(max-width:900px){
 
-  .two-col{
-    grid-template-columns:1fr;
-  }
+.two-col{
+grid-template-columns:1fr;
+}
 
-  .header{
-    flex-direction:column;
-    gap:18px;
-  }
+.header{
+flex-direction:column;
+gap:18px;
+}
 
-  .header-title h1{
-    font-size:42px;
-  }
-
-  .fields-grid{
-    grid-template-columns:1fr;
-  }
+.header-title h1{
+font-size:42px;
+}
 
 }
 
 .panel{
-  border:1.5px solid #111;
-  background:#ebe6da;
+border:1.5px solid #111;
+background:#ebe6da;
 }
 
 .panel-header{
-  background:#111;
-  color:#fff;
-  padding:10px 16px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:12px;
-  letter-spacing:3px;
+background:#111;
+color:#fff;
+padding:10px 16px;
+display:flex;
+align-items:center;
+gap:8px;
+font-size:12px;
+letter-spacing:3px;
 }
 
 .dots{
-  display:flex;
-  gap:4px;
+display:flex;
+gap:4px;
 }
 
 .dot{
-  width:10px;
-  height:10px;
-  background:#555;
+width:10px;
+height:10px;
+background:#555;
 }
 
 .panel-body{
-  padding:28px;
+padding:28px;
 }
 
 .panel-title{
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:12px;
-  letter-spacing:2px;
+font-size:22px;
+font-weight:700;
+margin-bottom:12px;
+letter-spacing:2px;
 }
 
 .panel-desc{
-  font-size:12px;
-  color:#555;
-  line-height:1.9;
-  margin-bottom:18px;
+font-size:12px;
+color:#555;
+line-height:1.9;
+margin-bottom:18px;
 }
 
 .info-row{
-  display:flex;
-  justify-content:space-between;
-  padding:11px 0;
-  border-bottom:1px dashed #b8b1a5;
-  font-size:13px;
+display:flex;
+justify-content:space-between;
+padding:11px 0;
+border-bottom:1px dashed #b8b1a5;
+font-size:13px;
 }
 
 .label{
-  color:#666;
+color:#666;
 }
 
 .value{
-  font-weight:700;
+font-weight:700;
 }
 
 .progress-wrap{
-  margin-top:18px;
+margin-top:18px;
 }
 
 .progress-bg{
-  width:100%;
-  height:12px;
-  border:1px solid #999;
-  background:#ccc;
+width:100%;
+height:12px;
+border:1px solid #999;
+background:#ccc;
 }
 
 .progress-fill{
-  width:0%;
-  height:100%;
-  background:#c95a00;
+width:0%;
+height:100%;
+background:#c95a00;
+transition:0.3s;
 }
 
 .progress-label{
-  margin-top:8px;
-  font-size:11px;
-  color:#555;
-  line-height:1.8;
+margin-top:8px;
+font-size:11px;
+color:#555;
+line-height:1.8;
 }
 
 .btn-row{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
+display:flex;
+gap:10px;
+margin-top:20px;
 }
 
 .btn{
-  flex:1;
-  border:1.5px solid #111;
-  background:#e2ddd1;
-  color:#111;
-  padding:12px;
-  font-family:inherit;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:2px;
-  cursor:pointer;
+flex:1;
+border:1.5px solid #111;
+background:#e2ddd1;
+color:#111;
+padding:12px;
+font-family:inherit;
+font-size:11px;
+font-weight:700;
+letter-spacing:2px;
+cursor:pointer;
 }
 
 .btn-dark{
-  background:#111;
-  color:#fff;
+background:#111;
+color:#fff;
 }
 
 .status-banner{
-  border:2px solid #c95a00;
-  color:#c95a00;
-  text-align:center;
-  padding:12px;
-  margin:16px 0;
-  font-weight:700;
-  letter-spacing:3px;
-  font-size:14px;
+border:2px solid #c95a00;
+color:#c95a00;
+text-align:center;
+padding:12px;
+margin:16px 0;
+font-weight:700;
+letter-spacing:3px;
+font-size:14px;
 }
 
 .activity-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid #d1cabd;
-  padding:12px 0;
-  font-size:12px;
+display:flex;
+align-items:center;
+gap:10px;
+border-bottom:1px solid #d1cabd;
+padding:12px 0;
+font-size:12px;
 }
 
 .activity-item:last-child{
-  border-bottom:none;
+border-bottom:none;
 }
 
 .act-badge{
-  padding:5px 10px;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:2px;
-  white-space:nowrap;
+padding:5px 10px;
+font-size:10px;
+font-weight:700;
+letter-spacing:2px;
+white-space:nowrap;
 }
 
 .act-mint{
-  background:#111;
-  color:#fff;
+background:#111;
+color:#fff;
 }
 
 .act-pool{
-  background:#fff;
-  border:1px solid #111;
-}
-
-.act-ready{
-  background:#e2ddd1;
-  border:1px solid #111;
+background:#fff;
+border:1px solid #111;
 }
 
 .act-info{
-  display:flex;
-  flex-direction:column;
-  gap:3px;
-  flex:1;
+display:flex;
+flex-direction:column;
+gap:3px;
+flex:1;
 }
 
 .act-hash{
-  color:#666;
-  font-size:10px;
+color:#666;
+font-size:10px;
 }
 
 .act-block{
-  font-size:10px;
-  color:#888;
-  white-space:nowrap;
+font-size:10px;
+color:#888;
+white-space:nowrap;
 }
 
 .live-dot{
-  width:10px;
-  height:10px;
-  background:#c95a00;
-  border-radius:50%;
-  display:inline-block;
+width:10px;
+height:10px;
+background:#c95a00;
+border-radius:50%;
+display:inline-block;
 }
 
 .status-box{
-  margin-top:14px;
-  border-top:1px solid #ccc;
-  padding-top:14px;
+margin-top:14px;
+border-top:1px solid #ccc;
+padding-top:14px;
 }
 
 .status-row{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px dashed #ccc;
-  font-size:11px;
+display:flex;
+justify-content:space-between;
+padding:7px 0;
+border-bottom:1px dashed #ccc;
+font-size:11px;
 }
 
 .s-label{
-  color:#666;
+color:#666;
 }
 
 .s-val{
-  font-weight:700;
+font-weight:700;
 }
 
 .orange{
-  color:#c95a00;
+color:#c95a00;
 }
 
 .green{
-  color:#0c8b54;
+color:#0c8b54;
 }
 
 .json-box{
-  background:#f6f1e5;
-  border:1px solid #ccc;
-  padding:18px;
-  line-height:1.8;
-  font-size:12px;
-  overflow-x:auto;
-  white-space:pre-wrap;
-  margin-bottom:14px;
-}
-
-.deploy-card{
-  border:1.5px solid #111;
-  background:#111;
-  color:#fff;
-  display:flex;
-}
-
-.deploy-sidebar{
-  width:34px;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-shrink:0;
-}
-
-.deploy-sidebar span{
-  writing-mode:vertical-rl;
-  transform:rotate(180deg);
-  color:#555;
-  font-size:10px;
-  letter-spacing:4px;
-}
-
-.deploy-inner{
-  flex:1;
-  padding:24px;
-  position:relative;
-}
-
-.coming{
-  position:absolute;
-  top:24px;
-  right:24px;
-  border:1px solid #555;
-  padding:7px 14px;
-  color:#777;
-  font-size:10px;
-  letter-spacing:2px;
-}
-
-.deploy-num{
-  font-size:30px;
-  color:#444;
-  margin-bottom:6px;
-}
-
-.deploy-label{
-  color:#c95a00;
-  font-size:10px;
-  letter-spacing:2px;
-  margin-bottom:10px;
-}
-
-.deploy-title{
-  font-size:34px;
-  line-height:1.2;
-  margin-bottom:22px;
-}
-
-.fields-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.field-box{
-  border:1px solid #333;
-  background:#1a1a1a;
-  padding:12px;
-}
-
-.field-name{
-  color:#777;
-  font-size:9px;
-  letter-spacing:2px;
-  margin-bottom:8px;
-}
-
-.field-value{
-  font-size:15px;
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.field-hint{
-  color:#666;
-  font-size:9px;
-  line-height:1.5;
-}
-
-.deploy-note{
-  margin-top:20px;
-  padding-top:14px;
-  border-top:1px solid #333;
-  color:#666;
-  font-size:10px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.token-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:11px;
-}
-
-.token-table th{
-  text-align:left;
-  padding:8px;
-  border-bottom:2px solid #111;
-  color:#666;
-  font-size:10px;
-  letter-spacing:1px;
-}
-
-.token-table td{
-  padding:10px 8px;
-  border-bottom:1px solid #ccc;
-  vertical-align:top;
-  line-height:1.6;
-}
-
-.token-name{
-  font-size:13px;
-  font-weight:700;
-}
-
-.token-addr{
-  font-size:10px;
-  color:#888;
-}
-
-.status-launched{
-  background:#111;
-  color:#fff;
-  padding:4px 8px;
-  font-size:10px;
-  letter-spacing:1px;
-  display:inline-block;
-}
-
-.overview-text{
-  line-height:2;
-  color:#333;
-  font-size:13px;
-}
-
-.supply-box{
-  margin-top:20px;
-}
-
-.supply-row{
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px dashed #ccc;
-  padding:10px 0;
-  font-size:12px;
+background:#f6f1e5;
+border:1px solid #ccc;
+padding:18px;
+line-height:1.8;
+font-size:12px;
+overflow-x:auto;
+white-space:pre-wrap;
+margin-bottom:14px;
 }
 
 footer{
-  margin-top:30px;
-  text-align:center;
-  color:#777;
-  font-size:11px;
+margin-top:30px;
+text-align:center;
+color:#777;
+font-size:11px;
 }
 
 </style>
@@ -553,11 +384,11 @@ C20
 <h1>CLAUDE-20</h1>
 
 <p>
-A Base-native inscription mint protocol with fixed supply mechanics.
+Base-native mint protocol with fixed 21M supply mechanics.
 </p>
 
 <div class="protocol-meta">
-BASE L2 • INSCRIPTION STANDARD • PUBLIC MINT
+BASE L2 • PUBLIC MINT • 21M SUPPLY
 </div>
 
 </div>
@@ -574,14 +405,6 @@ BASE L2 • INSCRIPTION STANDARD • PUBLIC MINT
 
 <button class="tab active" onclick="showPage('mint',this)">
 MINT
-</button>
-
-<button class="tab" onclick="showPage('deploy',this)">
-DEPLOY
-</button>
-
-<button class="tab" onclick="showPage('launched',this)">
-LAUNCHED
 </button>
 
 <button class="tab" onclick="showPage('overview',this)">
@@ -615,27 +438,28 @@ MINT.CLAUDE20
 </div>
 
 <div class="panel-desc">
-Amount credited to your wallet on successful inscription.
+Mint directly on Base chain.
+Each mint gives 1000 CLAUDE tokens.
 </div>
 
 <div class="info-row">
-<span class="label">Amount</span>
-<span class="value">100 CLAUDE</span>
+<span class="label">Mint Amount</span>
+<span class="value">1000 CLAUDE</span>
 </div>
 
 <div class="info-row">
-<span class="label">Cost</span>
-<span class="value">0.20 USD in ETH + gas</span>
+<span class="label">Mint Cost</span>
+<span class="value">0.05 USD in Base ETH</span>
 </div>
 
 <div class="info-row">
 <span class="label">Network</span>
-<span class="value">Base (L2)</span>
+<span class="value">Base Mainnet</span>
 </div>
 
 <div class="info-row">
-<span class="label">Protocol</span>
-<span class="value">minting</span>
+<span class="label">Total Supply</span>
+<span class="value">21,000,000</span>
 </div>
 
 <div class="progress-wrap">
@@ -645,36 +469,40 @@ Amount credited to your wallet on successful inscription.
 </div>
 
 <div class="progress-label">
-<span id="minted-text">0 / 15,000,000 public CLAUDE minted</span>
+<span id="minted-text">
+0 / 21,000,000 CLAUDE minted
+</span>
+
 &nbsp;&nbsp;
-<strong id="mint-percent">0%</strong> minted
+
+<strong id="mint-percent">
+0%
+</strong>
+
+minted
 </div>
 
-</div>
-
-<div class="panel-desc" style="margin-top:12px;">
-Liquidity reserve is separate: 6,000,000 CLAUDE is not counted in this bar.
 </div>
 
 <div class="btn-row">
 
 <button class="btn" id="connect-btn" onclick="connectWallet()">
-CONNECT<br>WALLET
+CONNECT WALLET
 </button>
 
 <button class="btn btn-dark" onclick="fakeMint()">
-MINT<br>INSCRIPTION
+MINT 1000
 </button>
 
 </div>
 
 <div class="status-banner">
-MINTING
+LIVE MINT
 </div>
 
 <div class="panel-desc">
-Mint transaction is sent as an on-chain CLAUDE-20 JSON inscription.
-The protocol mints the ERC-20 balance and tracks the public cap.
+Minting happens directly through Base network.
+Fixed supply: 21M tokens.
 </div>
 
 </div>
@@ -693,7 +521,7 @@ The protocol mints the ERC-20 balance and tracks the public cap.
 <span class="dot"></span>
 </div>
 
-ACTIVITY / LIVE
+LIVE ACTIVITY
 
 <span class="live-dot"></span>
 
@@ -701,20 +529,24 @@ ACTIVITY / LIVE
 
 <div class="panel-body">
 
-<div style="font-size:11px;margin-bottom:12px;">
-CLAUDE official pool launched
-<span class="live-dot"></span>
-</div>
-
 <div id="activity-feed">
 
 <div class="activity-item">
-<span class="act-badge act-pool">POOL</span>
+<span class="act-badge act-pool">
+LIVE
+</span>
+
 <div class="act-info">
-<span>POOL LAUNCHED</span>
-<span class="act-hash">0xED49...C92A</span>
+<span>CLAUDE-20 PUBLIC MINT OPEN</span>
+<span class="act-hash">
+BASE NETWORK
+</span>
 </div>
-<span class="act-block">BLOCK 25145308</span>
+
+<span class="act-block">
+ONLINE
+</span>
+
 </div>
 
 </div>
@@ -723,17 +555,23 @@ CLAUDE official pool launched
 
 <div class="status-row">
 <span class="s-label">provider</span>
-<span class="s-val orange" id="provider-status">missing</span>
+<span class="s-val orange" id="provider-status">
+missing
+</span>
 </div>
 
 <div class="status-row">
 <span class="s-label">wallet</span>
-<span class="s-val orange" id="wallet-status">offline</span>
+<span class="s-val orange" id="wallet-status">
+offline
+</span>
 </div>
 
 <div class="status-row">
 <span class="s-label">protocol</span>
-<span class="s-val green">online</span>
+<span class="s-val green">
+online
+</span>
 </div>
 
 </div>
@@ -752,20 +590,28 @@ CLAUDE official pool launched
 <span class="dot"></span>
 </div>
 
-INSCRIPTION / JSON
+MINT JSON
 
 </div>
 
 <div class="panel-body">
 
 <div class="json-box" id="json-box">
-{ "p":"claude-20", "op":"mint", "tick":"CLAUDE", "amt":"100", "chain":"base", "fee":"0.20" }
+{
+"p":"claude-20",
+"op":"mint",
+"tick":"CLAUDE",
+"amt":"1000",
+"chain":"base",
+"fee":"0.05"
+}
 </div>
 
 <div class="btn-row">
-<button class="btn" onclick="copyMintJSON()">COPY MINT JSON</button>
-<button class="btn" onclick="copyDeployJSON()">COPY DEPLOY JSON</button>
-</div>
+
+<button class="btn" onclick="copyMintJSON()">
+COPY JSON
+</button>
 
 </div>
 
@@ -777,86 +623,60 @@ INSCRIPTION / JSON
 
 </div>
 
-<div id="page-deploy" class="page">
-<div class="deploy-card">
-<div class="deploy-sidebar"><span>LAUNCHPAD</span></div>
-<div class="deploy-inner">
-<div class="coming">COMING SOON</div>
-<div class="deploy-num">02</div>
-<div class="deploy-label">NEW INSCRIPTION BLUEPRINT</div>
-<div class="deploy-title">DEPLOY YOUR OWN<br>CLAUDE-20</div>
-<div class="fields-grid">
-<div class="field-box"><div class="field-name">NAME</div><div class="field-value">Claude20</div><div class="field-hint">ERC-20 display name</div></div>
-<div class="field-box"><div class="field-name">TICKER</div><div class="field-value">CLAUDE</div><div class="field-hint">4-8 characters</div></div>
-<div class="field-box"><div class="field-name">TOTAL SUPPLY</div><div class="field-value">21000000</div><div class="field-hint">whole token units</div></div>
-<div class="field-box"><div class="field-name">MINT LIMIT</div><div class="field-value">100</div><div class="field-hint">tokens per inscription</div></div>
-<div class="field-box"><div class="field-name">PUBLIC ALLOCATION</div><div class="field-value">15000000</div><div class="field-hint">tracked by mint progress</div></div>
-<div class="field-box"><div class="field-name">LIQUIDITY RESERVE</div><div class="field-value">6000000</div><div class="field-hint">excluded from mint progress</div></div>
-</div>
-</div>
-</div>
-</div>
-
-<div id="page-launched" class="page">
-<div class="panel">
-<div class="panel-header">
-<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-LAUNCHED TOKENS
-</div>
-<div class="panel-body">
-<table class="token-table">
-<tr>
-<th>TOKEN</th>
-<th>MINTED</th>
-<th>LIQUIDITY</th>
-<th>STATUS</th>
-</tr>
-<tr>
-<td>
-<div class="token-name">CLAUDE</div>
-<div class="token-addr">0x7116...CF26</div>
-</td>
-<td>15,000,000 / 15,000,000</td>
-<td>6,000,000</td>
-<td><span class="status-launched">POOL LAUNCHED</span></td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 
 <div id="page-overview" class="page">
-<div class="two-col">
-<div class="panel">
-<div class="panel-header">
-<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-WHAT / CLAUDE20
-</div>
-<div class="panel-body">
-<div class="overview-text">
-<p>CLAUDE-20 is a Base-native inscription mint protocol with a fixed supply of 21 million tokens.</p>
-<p>Public mint allocation is capped at 15 million CLAUDE, while 6 million tokens remain reserved for liquidity provisioning and protocol launch mechanics.</p>
-<p>Mint transactions generate an on-chain JSON inscription which tracks mint progress and public supply allocation.</p>
-</div>
-</div>
-</div>
 
 <div class="panel">
+
 <div class="panel-header">
-<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-SUPPLY
+
+<div class="dots">
+<span class="dot"></span>
+<span class="dot"></span>
+<span class="dot"></span>
 </div>
+
+CLAUDE20 OVERVIEW
+
+</div>
+
 <div class="panel-body">
-<div class="supply-box">
-<div class="supply-row"><span class="s-label">Mint Size</span><span>100 CLAUDE</span></div>
-<div class="supply-row"><span class="s-label">Public Cap</span><span>15,000,000 CLAUDE</span></div>
-<div class="supply-row"><span class="s-label">Liquidity Reserve</span><span>6,000,000 CLAUDE</span></div>
-<div class="supply-row"><span class="s-label">Total Supply</span><span>21,000,000 CLAUDE</span></div>
-<div class="supply-row"><span class="s-label">Cost</span><span>0.20 USD in ETH</span></div>
+
+<div class="info-row">
+<span class="label">Token Name</span>
+<span class="value">CLAUDE-20</span>
 </div>
+
+<div class="info-row">
+<span class="label">Ticker</span>
+<span class="value">CLAUDE</span>
 </div>
+
+<div class="info-row">
+<span class="label">Total Supply</span>
+<span class="value">21,000,000</span>
 </div>
+
+<div class="info-row">
+<span class="label">Per Mint</span>
+<span class="value">1000 CLAUDE</span>
 </div>
+
+<div class="info-row">
+<span class="label">Mint Fee</span>
+<span class="value">0.05 USD</span>
+</div>
+
+<div class="info-row">
+<span class="label">Network</span>
+<span class="value">Base</span>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 <footer>
@@ -866,144 +686,142 @@ CLAUDE-20 © 2026
 <script>
 
 let minted = 0;
-let maxMint = 15000000;
+let maxMint = 21000000;
 
 function showPage(page,btn){
 
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.remove('active');
-  });
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
 
-  document.getElementById('page-'+page).classList.add('active');
+document.getElementById('page-'+page).classList.add('active');
 
-  document.querySelectorAll('.tab').forEach(t=>{
-    t.classList.remove('active');
-  });
+document.querySelectorAll('.tab').forEach(t=>{
+t.classList.remove('active');
+});
 
-  btn.classList.add('active');
+btn.classList.add('active');
 
 }
 
 async function connectWallet(){
 
-  if(typeof window.ethereum === 'undefined'){
-    alert('MetaMask / Coinbase / Bitget Wallet not detected');
-    return;
-  }
+if(typeof window.ethereum === 'undefined'){
+alert('Wallet not detected');
+return;
+}
 
-  try{
+try{
 
-    const accounts = await window.ethereum.request({
-      method:'eth_requestAccounts'
-    });
+const accounts = await window.ethereum.request({
+method:'eth_requestAccounts'
+});
 
-    const address = accounts[0];
+const address = accounts[0];
 
-    document.getElementById('connect-btn').innerHTML =
-      address.slice(0,6) + '...' + address.slice(-4);
+document.getElementById('connect-btn').innerHTML =
+address.slice(0,6) + '...' + address.slice(-4);
 
-    document.getElementById('provider-status').innerText = 'online';
-    document.getElementById('provider-status').classList.remove('orange');
-    document.getElementById('provider-status').classList.add('green');
+document.getElementById('provider-status').innerText = 'online';
 
-    document.getElementById('wallet-status').innerText = 'connected';
-    document.getElementById('wallet-status').classList.remove('orange');
-    document.getElementById('wallet-status').classList.add('green');
+document.getElementById('wallet-status').innerText = 'connected';
 
-    await switchToBase();
+await switchToBase();
 
-  }catch(err){
-    console.log(err);
-  }
+}catch(err){
+
+console.log(err);
+
+}
 
 }
 
 async function switchToBase(){
 
-  try{
+try{
 
-    await window.ethereum.request({
-      method:'wallet_switchEthereumChain',
-      params:[{ chainId:'0x2105' }]
-    });
+await window.ethereum.request({
+method:'wallet_switchEthereumChain',
+params:[{ chainId:'0x2105' }]
+});
 
-  }catch(error){
+}catch(error){
 
-    try{
+try{
 
-      await window.ethereum.request({
-        method:'wallet_addEthereumChain',
-        params:[{
-          chainId:'0x2105',
-          chainName:'Base',
-          nativeCurrency:{
-            name:'ETH',
-            symbol:'ETH',
-            decimals:18
-          },
-          rpcUrls:['https://mainnet.base.org'],
-          blockExplorerUrls:['https://basescan.org']
-        }]
-      });
+await window.ethereum.request({
+method:'wallet_addEthereumChain',
+params:[{
+chainId:'0x2105',
+chainName:'Base',
+nativeCurrency:{
+name:'ETH',
+symbol:'ETH',
+decimals:18
+},
+rpcUrls:['https://mainnet.base.org'],
+blockExplorerUrls:['https://basescan.org']
+}]
+});
 
-    }catch(addError){
-      console.log(addError);
-    }
+}catch(addError){
 
-  }
+console.log(addError);
+
+}
+
+}
 
 }
 
 function fakeMint(){
 
-  minted += 100;
+minted += 1000;
 
-  const percent = ((minted / maxMint) * 100).toFixed(4);
+if(minted > maxMint){
+minted = maxMint;
+}
 
-  document.getElementById('minted-text').innerText =
-    minted.toLocaleString() + ' / 15,000,000 public CLAUDE minted';
+const percent = ((minted / maxMint) * 100).toFixed(4);
 
-  document.getElementById('mint-percent').innerText =
-    percent + '%';
+document.getElementById('minted-text').innerText =
+minted.toLocaleString() + ' / 21,000,000 CLAUDE minted';
 
-  document.getElementById('progress-fill').style.width =
-    percent + '%';
+document.getElementById('mint-percent').innerText =
+percent + '%';
 
-  const hash = '0x' + Math.random().toString(16).substring(2,10).toUpperCase();
+document.getElementById('progress-fill').style.width =
+percent + '%';
 
-  const activity = document.createElement('div');
-  activity.className = 'activity-item';
+const hash =
+'0x' + Math.random().toString(16).substring(2,10).toUpperCase();
 
-  activity.innerHTML = `
-    <span class="act-badge act-mint">MINT</span>
-    <div class="act-info">
-      <span>100 CLAUDE</span>
-      <span class="act-hash">${hash}</span>
-    </div>
-    <span class="act-block">LIVE</span>
-  `;
+const activity = document.createElement('div');
 
-  document.getElementById('activity-feed').prepend(activity);
+activity.className = 'activity-item';
+
+activity.innerHTML = `
+<span class="act-badge act-mint">MINT</span>
+
+<div class="act-info">
+<span>1000 CLAUDE</span>
+<span class="act-hash">${hash}</span>
+</div>
+
+<span class="act-block">LIVE</span>
+`;
+
+document.getElementById('activity-feed').prepend(activity);
 
 }
 
 function copyMintJSON(){
 
-  navigator.clipboard.writeText(
-    '{ "p":"claude-20", "op":"mint", "tick":"CLAUDE", "amt":"100", "chain":"base", "fee":"0.20" }'
-  );
+navigator.clipboard.writeText(
+'{ "p":"claude-20","op":"mint","tick":"CLAUDE","amt":"1000","chain":"base","fee":"0.05" }'
+);
 
-  alert('Mint JSON copied');
-
-}
-
-function copyDeployJSON(){
-
-  navigator.clipboard.writeText(
-    '{ "p":"claude-20", "op":"deploy", "tick":"CLAUDE", "max":"21000000", "lim":"100" }'
-  );
-
-  alert('Deploy JSON copied');
+alert('Mint JSON copied');
 
 }
 
