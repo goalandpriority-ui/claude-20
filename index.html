@@ -1125,9 +1125,8 @@ Every accepted transaction updates the live global supply tracker instantly.
 <span class="value">CLAUDE-20</span>
 </div>
 
-</div>
-
-<div class="progress-box">
+  </div>
+  <div class="progress-box">
 
 <div class="progress-bg">
 <div class="progress-fill" id="progress-fill"></div>
@@ -1166,6 +1165,7 @@ CLAUDE20 PUBLIC MINT ACTIVE
 </div>
 
 </div>
+
 <div style="display:flex;flex-direction:column;gap:22px;">
 
 <div class="panel">
@@ -1597,179 +1597,3 @@ The protocol interface is designed around inscription-inspired mint mechanics, l
 </div>
 
 </div>
-
-<div>
-
-<div class="panel" style="margin-bottom:18px;">
-
-<div class="panel-header">
-SUPPLY
-</div>
-
-<div class="panel-body">
-
-<div class="overview-list">
-
-<div>
-<span>Total Supply</span>
-<strong>21,000,000</strong>
-</div>
-
-<div>
-<span>Mint Size</span>
-<strong>1000 CLAUDE</strong>
-</div>
-
-<div>
-<span>Mint Fee</span>
-<strong>0.000015 ETH</strong>
-</div>
-
-<div>
-<span>ERC20 Standard</span>
-<strong>ACTIVE</strong>
-</div>
-
-<div>
-<span>Network</span>
-<strong>BASE MAINNET</strong>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<div class="panel-header">
-FLOW
-</div>
-
-<div class="panel-body">
-
-<div class="subtext" style="color:#ddd;">
-
-1. Connect Base wallet.<br><br>
-
-2. Approve Base network access.<br><br>
-
-3. Submit mint transaction.<br><br>
-
-4. Pay 0.000015 ETH mint fee.<br><br>
-
-5. Receive 1000 CLAUDE instantly.<br><br>
-
-6. Global supply tracker updates live.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- DOCS -->
-
-<div id="page-docs" class="page">
-
-<div class="docs-layout">
-
-<div class="docs-sidebar">
-
-<div class="docs-link">
-01 / MINT ACTION
-</div>
-
-<div class="docs-link">
-02 / ERC20 CONTRACT
-</div>
-
-<div class="docs-link">
-03 / INSCRIPTION JSON
-</div>
-
-<div class="docs-link">
-04 / PUBLIC SUPPLY
-</div>
-
-<div class="docs-link">
-05 / BASE NETWORK
-</div>
-
-<div class="docs-link">
-06 / LIVE TRACKING
-</div>
-
-<div class="docs-link">
-07 / CONTRACT SECURITY
-</div>
-
-</div>
-
-<div>
-
-<div class="doc-card">
-
-<div class="panel-header">
-01 / MINT ACTION
-</div>
-
-<div class="doc-content">
-
-<p>
-The CLAUDE20 mint interface sends a direct onchain Base transaction through the connected wallet provider.
-
-Once the transaction is accepted by the ERC20 contract, the caller instantly receives 1000 CLAUDE tokens and the global mint tracker updates across the frontend interface.
-</p>
-
-<p>
-The mint process is intentionally simplified into a minimal public transaction flow:
-connect wallet, approve transaction, mint tokens, and update live protocol supply.
-</p>
-
-<div class="doc-code">
-{
- "p":"claude-20",
- "op":"mint",
- "tick":"CLAUDE",
- "amt":"1000"
-}
-</div>
-
-</div>
-
-</div>
-
-<div class="doc-card">
-
-<div class="panel-header">
-02 / ERC20 CONTRACT
-</div>
-
-<div class="doc-content">
-
-<p>
-CLAUDE20 operates using a live ERC20 smart contract deployed entirely on Base Mainnet.
-
-The contract manages token minting, total supply accounting, public transaction execution, and ERC20 balance logic directly onchain.
-</p>
-
-<p>
-The protocol uses fixed supply mechanics with immutable transaction visibility through the Base blockchain infrastructure.
-</p>
-
-<div class="doc-code">
-CONTRACT:
-0x6d98c7A619AB31878dEBB4919247ca67FaE60C98
-</div>
-
-</div>
-
-  </div>
