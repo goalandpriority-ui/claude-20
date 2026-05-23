@@ -215,6 +215,12 @@ box-shadow:4px 4px 0 #ff8800;
 
 text-transform:uppercase;
 
+transition:.2s;
+
+}
+
+.tab:hover{
+transform:translate(-2px,-2px);
 }
 
 .tab.active{
@@ -226,10 +232,22 @@ color:#000;
 
 .page{
 display:none;
+animation:fade .3s ease;
 }
 
 .page.active{
 display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 .grid-2{
@@ -424,6 +442,12 @@ box-shadow:4px 4px 0 #ff8800;
 
 text-transform:uppercase;
 
+transition:.2s;
+
+}
+
+.btn:hover{
+transform:translate(-2px,-2px);
 }
 
 .btn-dark{
@@ -599,8 +623,7 @@ margin-bottom:18px;
 color:#ff8800;
 
 }
-
-.deploy-layout{
+  .deploy-layout{
 
 display:grid;
 grid-template-columns:90px 1fr;
@@ -804,10 +827,13 @@ cursor:pointer;
 
 color:#ddd;
 
+transition:.2s;
+
 }
 
 .docs-link:hover{
 background:#161616;
+padding-left:24px;
 }
 
 .doc-card{
@@ -1035,6 +1061,7 @@ DOCS
 </button>
 
 </div>
+
 <!-- MINT PAGE -->
 
 <div id="page-mint" class="page active">
@@ -1057,7 +1084,9 @@ MINT.CLAUDE20
 
 </div>
 
-<div>LIVE</div>
+<div>
+LIVE
+</div>
 
 </div>
 
@@ -1068,8 +1097,10 @@ MINT.CLAUDE20
 </div>
 
 <div class="subtext">
+
 Mint 1000 CLAUDE directly on Base Mainnet using your wallet.
 Every accepted transaction updates the live global supply tracker instantly.
+
 </div>
 
 <div class="info-table">
@@ -1085,16 +1116,6 @@ Every accepted transaction updates the live global supply tracker instantly.
 </div>
 
 <div class="info-row">
-<span class="label">Treasury</span>
-<span class="value">ACTIVE</span>
-</div>
-
-<div class="info-row">
-<span class="label">Contract</span>
-<span class="value">0x6d98...60C98</span>
-</div>
-
-<div class="info-row">
 <span class="label">Network</span>
 <span class="value">Base Mainnet</span>
 </div>
@@ -1102,6 +1123,11 @@ Every accepted transaction updates the live global supply tracker instantly.
 <div class="info-row">
 <span class="label">Protocol</span>
 <span class="value">CLAUDE-20</span>
+</div>
+
+<div class="info-row">
+<span class="label">Wallet Support</span>
+<span class="value">MULTI WALLET</span>
 </div>
 
 </div>
@@ -1127,7 +1153,6 @@ Every accepted transaction updates the live global supply tracker instantly.
 </div>
 
 </div>
-
 <div class="button-row">
 
 <button class="btn" id="connect-btn" onclick="connectWallet()">
@@ -1186,7 +1211,7 @@ ACTIVITY / LIVE
 
 <div class="panel-body">
 
-<div class="activity-feed" id="activity-feed">
+<div class="activity-feed">
 
 <div class="activity-item">
 
@@ -1231,7 +1256,7 @@ PUBLIC ERC20 MINT ENABLED
 </div>
 
 <div class="activity-hash">
-LIVE CONTRACT INDEX ACTIVE
+GLOBAL SUPPLY INDEX ACTIVE
 </div>
 
 </div>
@@ -1259,7 +1284,7 @@ BASE LIQUIDITY TRACKER INITIALIZED
 </div>
 
 <div class="activity-hash">
-CLAUDE20 PUBLIC POOL MONITOR
+LIVE POOL MONITOR READY
 </div>
 
 </div>
@@ -1268,6 +1293,34 @@ CLAUDE20 PUBLIC POOL MONITOR
 
 <div class="activity-block">
 READY
+</div>
+
+</div>
+
+<div class="activity-item">
+
+<div class="activity-left">
+
+<div class="badge orange">
+CHAIN
+</div>
+
+<div class="activity-info">
+
+<div class="activity-title">
+BASE RPC CONNECTED
+</div>
+
+<div class="activity-hash">
+MULTI WALLET PROVIDER ENABLED
+</div>
+
+</div>
+
+</div>
+
+<div class="activity-block">
+SYNCED
 </div>
 
 </div>
@@ -1291,16 +1344,16 @@ DISCONNECTED
 </div>
 
 <div class="status-card">
-<div class="name">TREASURY</div>
+<div class="name">BASE RPC</div>
 <div class="state green">
-ACTIVE
+CONNECTED
 </div>
 </div>
 
 <div class="status-card">
-<div class="name">BASE NETWORK</div>
+<div class="name">MINT STATUS</div>
 <div class="state green">
-CONNECTED
+ACTIVE
 </div>
 </div>
 
@@ -1326,7 +1379,9 @@ INSCRIPTION / JSON
 
 </div>
 
-<div>BASE</div>
+<div>
+BASE
+</div>
 
 </div>
 
@@ -1407,10 +1462,10 @@ COMING SOON
 <div class="field-grid">
 
 <div class="field">
-<div class="field-name">NAME</div>
-<div class="field-value">Claude20</div>
+<div class="field-name">TOKEN NAME</div>
+<div class="field-value">CLAUDE20</div>
 <div class="field-desc">
-ERC20 protocol deployment framework for Base Mainnet.
+Base-native ERC20 inscription protocol deployment structure.
 </div>
 </div>
 
@@ -1418,15 +1473,15 @@ ERC20 protocol deployment framework for Base Mainnet.
 <div class="field-name">TICKER</div>
 <div class="field-value">CLAUDE</div>
 <div class="field-desc">
-4-8 character ERC20 mint ticker identifier.
+Public mint token identifier tracked globally.
 </div>
 </div>
 
 <div class="field">
 <div class="field-name">TOTAL SUPPLY</div>
-<div class="field-value">21000000</div>
+<div class="field-value">21M</div>
 <div class="field-desc">
-Maximum fixed supply tracked globally forever.
+Immutable fixed supply tracked directly from contract.
 </div>
 </div>
 
@@ -1434,15 +1489,14 @@ Maximum fixed supply tracked globally forever.
 <div class="field-name">MINT LIMIT</div>
 <div class="field-value">1000</div>
 <div class="field-desc">
-Maximum tokens returned per mint transaction.
+Maximum amount returned per mint transaction.
 </div>
-</div>
-
-<div class="field">
+  </div>
+  <div class="field">
 <div class="field-name">PUBLIC MINT</div>
 <div class="field-value">ACTIVE</div>
 <div class="field-desc">
-Public mint transaction system currently online.
+Global public mint system enabled on Base Mainnet.
 </div>
 </div>
 
@@ -1450,7 +1504,7 @@ Public mint transaction system currently online.
 <div class="field-name">LIQUIDITY</div>
 <div class="field-value">BASE</div>
 <div class="field-desc">
-Designed for future Base liquidity integrations.
+Designed for future Base liquidity pool integrations.
 </div>
 </div>
 
@@ -1458,7 +1512,7 @@ Designed for future Base liquidity integrations.
 <div class="field-name">POOL STATUS</div>
 <div class="field-value">TRACKED</div>
 <div class="field-desc">
-Live frontend protocol indexing and monitoring.
+Frontend supply indexing and live transaction monitoring enabled.
 </div>
 </div>
 
@@ -1466,7 +1520,7 @@ Live frontend protocol indexing and monitoring.
 <div class="field-name">MINT FEE</div>
 <div class="field-value">0.000015</div>
 <div class="field-desc">
-Base ETH fee required for every accepted mint.
+Base ETH fee required for every successful mint.
 </div>
 </div>
 
@@ -1478,8 +1532,7 @@ Base ETH fee required for every accepted mint.
 
 </div>
 
-  </div>
-  <!-- LAUNCHED -->
+<!-- LAUNCHED PAGE -->
 
 <div id="page-launched" class="page">
 
@@ -1494,8 +1547,11 @@ LAUNCHPAD / TOKENS
 <div class="panel-body">
 
 <div class="subtext">
+
 1 TOKEN INDEXED<br>
-LIVE CACHE UPDATE ACTIVE
+LIVE CACHE UPDATE ACTIVE<br>
+BASE ERC20 TRACKING ENABLED
+
 </div>
 
 <table class="token-table">
@@ -1553,7 +1609,7 @@ Every accepted public mint transaction updates the live CLAUDE20 protocol tracke
 
 The frontend indexes supply activity directly from the Base Mainnet ERC20 contract and reflects mint progress globally.
 
-</div>
+All mint activity is synced through Base RPC reads and rendered live through the CLAUDE20 frontend protocol layer.
 
 </div>
 
@@ -1563,7 +1619,9 @@ The frontend indexes supply activity directly from the Base Mainnet ERC20 contra
 
 </div>
 
-<!-- OVERVIEW -->
+</div>
+
+<!-- OVERVIEW PAGE -->
 
 <div id="page-overview" class="page">
 
@@ -1586,6 +1644,8 @@ Users mint directly from the deployed smart contract using Base ETH transactions
 Every accepted mint transaction permanently updates the live public supply tracker and instantly credits 1000 CLAUDE to the caller wallet.
 
 The protocol interface is designed around inscription-inspired mint mechanics, live Base activity indexing, and immutable public supply visibility.
+
+CLAUDE20 combines classic BRC20-style visual structure with ERC20 smart contract execution directly on Base Mainnet.
 
 </div>
 
@@ -1630,6 +1690,11 @@ SUPPLY
 <strong>BASE MAINNET</strong>
 </div>
 
+<div>
+<span>Wallet Support</span>
+<strong>MULTI WALLET</strong>
+</div>
+
 </div>
 
 </div>
@@ -1656,7 +1721,9 @@ FLOW
 
 5. Receive 1000 CLAUDE instantly.<br><br>
 
-6. Global supply tracker updates live.
+6. Global supply tracker updates live.<br><br>
+
+7. Frontend indexes ERC20 supply directly from Base Mainnet.
 
 </div>
 
@@ -1670,7 +1737,7 @@ FLOW
 
 </div>
 
-<!-- DOCS -->
+<!-- DOCS PAGE -->
 
 <div id="page-docs" class="page">
 
@@ -1719,16 +1786,18 @@ FLOW
 <div class="doc-content">
 
 <p>
+
 The CLAUDE20 mint interface sends a direct onchain Base transaction through the connected wallet provider.
-</p>
 
-<p>
 Once the transaction is accepted by the ERC20 contract, the caller instantly receives 1000 CLAUDE tokens and the global mint tracker updates across the frontend interface.
+
 </p>
 
 <p>
+
 The mint process is intentionally simplified into a minimal public transaction flow:
 connect wallet, approve transaction, mint tokens, and update live protocol supply instantly.
+
 </p>
 
 <div class="doc-code">
@@ -1736,10 +1805,47 @@ connect wallet, approve transaction, mint tokens, and update live protocol suppl
   "p":"claude-20",
   "op":"mint",
   "tick":"CLAUDE",
-  "amt":"1000",
-  "chain":"base",
-  "fee":"0.000015"
+  "amt":"1000"
 }
+</div>
+
+</div>
+
+</div>
+  <div class="doc-card">
+
+<div class="panel-header">
+02 / ERC20 CONTRACT
+</div>
+
+<div class="doc-content">
+
+<p>
+
+CLAUDE20 operates through a live ERC20 smart contract deployed directly on Base Mainnet.
+
+The frontend communicates with the contract through ethers.js and reads total supply values in real time using Base RPC endpoints.
+
+</p>
+
+<p>
+
+All mint activity is validated directly by the smart contract before the frontend updates protocol statistics and public mint progress.
+
+</p>
+
+<div class="doc-code">
+CONTRACT:
+0x6d98c7A619AB31878dEBB4919247ca67FaE60C98
+
+NETWORK:
+BASE MAINNET
+
+STANDARD:
+ERC20
+
+MINT:
+PUBLIC
 </div>
 
 </div>
@@ -1749,55 +1855,30 @@ connect wallet, approve transaction, mint tokens, and update live protocol suppl
 <div class="doc-card">
 
 <div class="panel-header">
-02 / CONTRACT
-</div>
-
-<div class="doc-content">
-
-<p>
-The CLAUDE20 protocol uses a Base-native ERC20 smart contract with fixed supply mechanics and public mint interaction support.
-</p>
-
-<div class="doc-code">
-CONTRACT:
-0x6d98c7A619AB31878dEBB4919247ca67FaE60C98
-
-OWNER:
-0x7d2e876eB8fF50cfBa4B48344923b60e14f03eD8
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="doc-card">
-
-<div class="panel-header">
 03 / INSCRIPTION JSON
 </div>
 
 <div class="doc-content">
 
 <p>
-CLAUDE20 uses inscription-inspired metadata formatting to display mint instructions and protocol interaction layers directly inside the frontend interface.
+
+The CLAUDE20 interface preserves inscription-style JSON structures inspired by BRC20 protocol systems while executing mint logic through ERC20 smart contract mechanics.
+
 </p>
 
 <p>
-The JSON payload displayed on the mint page mirrors the transaction intent and provides a transparent public mint structure for all users.
+
+Users can inspect raw protocol mint objects directly from the frontend before interacting with the contract.
+
 </p>
 
 <div class="doc-code">
 {
   "p":"claude-20",
-  "op":"mint",
+  "op":"deploy",
   "tick":"CLAUDE",
-  "amt":"1000",
-  "chain":"base",
-  "fee":"0.000015"
+  "max":"21000000",
+  "lim":"1000"
 }
 </div>
 
@@ -1814,26 +1895,28 @@ The JSON payload displayed on the mint page mirrors the transaction intent and p
 <div class="doc-content">
 
 <p>
-The CLAUDE20 protocol has a permanently fixed maximum supply of 21,000,000 tokens.
+
+The total supply for CLAUDE20 is permanently fixed at 21 million tokens.
+
+Every successful mint increases the circulating public supply and updates the global mint tracker rendered on the frontend.
+
 </p>
 
 <p>
-Every successful mint updates the frontend supply tracker and dynamically adjusts the progress bar visible on the mint interface.
-</p>
 
-<p>
-The supply tracker reads directly from the Base Mainnet smart contract using live RPC calls.
+Supply values are fetched directly from the Base Mainnet ERC20 contract using live blockchain reads through ethers.js.
+
 </p>
 
 <div class="doc-code">
-TOTAL SUPPLY:
+MAX SUPPLY:
 21,000,000
 
 MINT SIZE:
 1000 CLAUDE
 
-NETWORK:
-BASE MAINNET
+MINT PRICE:
+0.000015 ETH
 </div>
 
 </div>
@@ -1849,16 +1932,29 @@ BASE MAINNET
 <div class="doc-content">
 
 <p>
-CLAUDE20 operates fully on Base Mainnet and supports standard EVM wallet providers including MetaMask, Coinbase Wallet, and Bitget Wallet.
+
+CLAUDE20 is designed exclusively for Base Mainnet.
+
+The frontend automatically requests Base chain switching if the connected wallet is currently operating on another EVM network.
+
 </p>
 
 <p>
-The mint transaction itself is processed directly onchain using Base ETH and standard ERC20 interaction logic.
+
+Supported wallets include MetaMask, Coinbase Wallet, Trust Wallet, Bitget Wallet, and injected EVM-compatible mobile browsers.
+
 </p>
 
-<p>
-Users are required to switch to Base Mainnet before minting.
-</p>
+<div class="doc-code">
+CHAIN ID:
+8453
+
+RPC:
+https://mainnet.base.org
+
+CHAIN:
+BASE MAINNET
+</div>
 
 </div>
 
@@ -1873,16 +1969,27 @@ Users are required to switch to Base Mainnet before minting.
 <div class="doc-content">
 
 <p>
-The frontend interface continuously reads live contract supply data from the deployed ERC20 contract.
+
+The CLAUDE20 frontend continuously monitors ERC20 supply values and renders live progress updates directly inside the mint interface.
+
 </p>
 
 <p>
-Mint progress, protocol status, wallet state, and public mint activity are reflected across the interface instantly after every accepted transaction.
+
+Progress bars, mint percentages, and supply counters automatically refresh using blockchain reads without requiring backend infrastructure.
+
 </p>
 
-<p>
-The protocol dashboard is designed to emulate inscription tracker interfaces while preserving standard ERC20 compatibility.
-</p>
+<div class="doc-code">
+TRACKER:
+LIVE
+
+SYNC:
+REALTIME
+
+SOURCE:
+BASE RPC
+</div>
 
 </div>
 
@@ -1897,20 +2004,30 @@ The protocol dashboard is designed to emulate inscription tracker interfaces whi
 <div class="doc-content">
 
 <p>
-CLAUDE20 mint execution occurs directly through the deployed ERC20 contract without intermediary custody layers.
+
+CLAUDE20 uses direct ERC20 interaction logic through ethers.js providers and signer execution layers.
+
+Wallet signatures are requested only during explicit mint actions initiated by the user.
+
 </p>
 
 <p>
-Wallet approval requests are limited to the public mint transaction only and all mint interactions are executed transparently on Base Mainnet.
-</p>
 
-<p>
-Users should always verify the contract address before interacting with the mint interface.
+No private keys, seed phrases, or wallet recovery methods are ever requested by the frontend interface.
+
 </p>
 
 <div class="doc-code">
-OFFICIAL CONTRACT:
-0x6d98c7A619AB31878dEBB4919247ca67FaE60C98
+SECURITY:
+NON-CUSTODIAL
+
+WALLET ACCESS:
+USER CONTROLLED
+
+SIGNATURES:
+MANUAL APPROVAL
+</div>
+
 </div>
 
 </div>
@@ -1922,9 +2039,7 @@ OFFICIAL CONTRACT:
 </div>
 
 <footer>
-
 CLAUDE20 / BASE NETWORK / LIVE ERC20 MINT
-
 </footer>
 
 </div>
@@ -1939,20 +2054,26 @@ const contractAddress =
 "0x6d98c7A619AB31878dEBB4919247ca67FaE60C98";
 
 const abi = [
-"function mint() payable",
-"function totalSupply() view returns (uint256)"
+"function totalSupply() view returns (uint256)",
+"function mint() payable"
 ];
-
 async function connectWallet(){
 
-if(typeof window.ethereum === 'undefined'){
-alert("Install MetaMask");
+try{
+
+if(typeof window.ethereum === "undefined"){
+
+alert("Install MetaMask / Trust Wallet / Coinbase Wallet / Bitget Wallet");
+
 return;
+
 }
 
 provider = new ethers.providers.Web3Provider(window.ethereum);
 
 await provider.send("eth_requestAccounts", []);
+
+await switchToBase();
 
 signer = provider.getSigner();
 
@@ -1967,6 +2088,58 @@ document.getElementById("wallet-status").innerText =
 document.getElementById("wallet-status").className =
 "state green";
 
+}catch(err){
+
+console.log(err);
+
+alert("Wallet Connection Failed");
+
+}
+
+}
+
+async function switchToBase(){
+
+try{
+
+await window.ethereum.request({
+method:"wallet_switchEthereumChain",
+params:[{ chainId:"0x2105" }]
+});
+
+}catch(err){
+
+if(err.code === 4902){
+
+try{
+
+await window.ethereum.request({
+method:"wallet_addEthereumChain",
+params:[
+{
+chainId:"0x2105",
+chainName:"Base Mainnet",
+nativeCurrency:{
+name:"Ethereum",
+symbol:"ETH",
+decimals:18
+},
+rpcUrls:["https://mainnet.base.org"],
+blockExplorerUrls:["https://basescan.org"]
+}
+]
+});
+
+}catch(addError){
+
+console.log(addError);
+
+}
+
+}
+
+}
+
 }
 
 async function mintClaude(){
@@ -1974,7 +2147,9 @@ async function mintClaude(){
 try{
 
 if(!provider){
+
 await connectWallet();
+
 }
 
 const contract = new ethers.Contract(
@@ -1994,6 +2169,8 @@ await tx.wait();
 alert("1000 CLAUDE Minted Successfully");
 
 updateSupply();
+
+addMintActivity(tx.hash);
 
 }catch(err){
 
@@ -2049,20 +2226,77 @@ console.log(err);
 
 }
 
+function addMintActivity(hash){
+
+const feed =
+document.getElementById("activity-feed");
+
+const item =
+document.createElement("div");
+
+item.className = "activity-item";
+
+item.innerHTML = `
+
+<div class="activity-left">
+
+<div class="badge orange">
+MINT
+</div>
+
+<div class="activity-info">
+
+<div class="activity-title">
+NEW PUBLIC MINT CONFIRMED
+</div>
+
+<div class="activity-hash">
+${hash}
+</div>
+
+</div>
+
+</div>
+
+<div class="activity-block">
+LIVE
+</div>
+
+`;
+
+feed.prepend(item);
+
+}
+
 function showPage(pageId,button){
 
 document.querySelectorAll('.page').forEach(page=>{
+
 page.classList.remove('active');
+
 });
 
 document.querySelectorAll('.tab').forEach(tab=>{
+
 tab.classList.remove('active');
+
 });
 
-document.getElementById('page-' + pageId)
-.classList.add('active');
+const targetPage =
+document.getElementById('page-' + pageId);
+
+if(targetPage){
+
+targetPage.classList.add('active');
+
+}
 
 button.classList.add('active');
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -2072,7 +2306,7 @@ navigator.clipboard.writeText(
 document.getElementById("json-box").innerText
 );
 
-alert("Mint JSON copied");
+alert("Mint JSON Copied");
 
 }
 
@@ -2080,25 +2314,25 @@ function copyDeployJSON(){
 
 navigator.clipboard.writeText(`
 {
-"p":"claude-20",
-"op":"deploy",
-"max":"21000000",
-"lim":"1000",
-"fee":"0.000015"
+  "p":"claude-20",
+  "op":"deploy",
+  "tick":"CLAUDE",
+  "max":"21000000",
+  "lim":"1000"
 }
 `);
 
-alert("Deploy JSON copied");
+alert("Deploy JSON Copied");
 
 }
 
 function copyContract(){
 
 navigator.clipboard.writeText(
-"0x6d98c7A619AB31878dEBB4919247ca67FaE60C98"
+contractAddress
 );
 
-alert("Contract copied");
+alert("Contract Copied");
 
 }
 
@@ -2112,6 +2346,8 @@ window.open(
 }
 
 updateSupply();
+
+setInterval(updateSupply,15000);
 
 </script>
 
