@@ -7,15 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'IBM Plex Mono',monospace;
-  background:linear-gradient(rgba(255,140,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,140,0,.04) 1px,transparent 1px),#050505;
-  background-size:4px 4px,4px 4px;
-  color:#ff9d00;padding:14px;overflow-x:hidden;
-}
+body{font-family:'IBM Plex Mono',monospace;background:linear-gradient(rgba(255,140,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,140,0,.04) 1px,transparent 1px),#050505;background-size:4px 4px,4px 4px;color:#ff9d00;padding:14px;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 .wrapper{max-width:1400px;margin:auto;}
 .top-header{border:2px solid #ff8800;background:#0d0d0d;padding:22px;box-shadow:8px 8px 0 #ff8800;position:relative;margin-bottom:22px;}
@@ -52,7 +46,6 @@ a{text-decoration:none;color:inherit;}
 .button-row{display:flex;gap:10px;margin-top:22px;}
 .btn{flex:1;border:2px solid #ff8800;background:#111;color:#ff8800;padding:16px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:2px;cursor:pointer;box-shadow:4px 4px 0 #ff8800;text-transform:uppercase;}
 .btn-dark{background:#ff8800;color:#000;}
-.btn:disabled{opacity:.5;cursor:not-allowed;}
 .live-banner{margin-top:22px;border:2px solid #ff8800;color:#ff8800;padding:16px;text-align:center;font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;}
 .activity-feed{display:flex;flex-direction:column;gap:12px;}
 .activity-item{border:1px solid #333;background:#080808;padding:14px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;}
@@ -67,9 +60,7 @@ a{text-decoration:none;color:inherit;}
 .status-card{border:1px solid #333;padding:14px;background:#050505;}
 .status-card .name{font-size:10px;letter-spacing:2px;color:#888;margin-bottom:8px;}
 .status-card .state{font-size:14px;font-weight:700;}
-.green{color:#00d26a;}
-.orange{color:#ff8800;}
-.red{color:#ff4444;}
+.green{color:#00d26a;}.orange{color:#ff8800;}.red{color:#ff4444;}
 .json-box{border:2px solid #ff8800;background:#050505;padding:22px;font-size:12px;line-height:2;white-space:pre-wrap;overflow:auto;margin-bottom:18px;color:#ff8800;}
 .deploy-layout{display:grid;grid-template-columns:90px 1fr;}
 .deploy-side{background:#000;border-right:2px solid #ff8800;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;letter-spacing:4px;font-weight:700;color:#ff8800;padding:20px 0;}
@@ -98,42 +89,23 @@ a{text-decoration:none;color:inherit;}
 .token-table th{background:#ff8800;color:#000;padding:16px;font-size:10px;letter-spacing:2px;text-align:left;}
 .token-table td{padding:16px;border-bottom:1px solid #333;font-size:12px;vertical-align:top;color:#ddd;}
 .token-status{display:inline-block;padding:7px 14px;background:#ff8800;color:#000;font-size:10px;font-weight:bold;}
-
-/* Wallet Modal */
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;}
-.modal-overlay.active{display:flex;}
+.modal-overlay.show{display:flex;}
 .modal-box{border:2px solid #ff8800;background:#0d0d0d;box-shadow:10px 10px 0 #ff8800;padding:32px;width:90%;max-width:440px;}
 .modal-title{font-size:18px;font-weight:700;color:#ff8800;letter-spacing:3px;margin-bottom:8px;}
 .modal-sub{font-size:11px;color:#888;margin-bottom:24px;letter-spacing:1px;}
-.wallet-option{display:flex;align-items:center;gap:14px;border:2px solid #333;background:#111;padding:16px;margin-bottom:12px;cursor:pointer;transition:.2s;}
+.wallet-option{display:flex;align-items:center;gap:14px;border:2px solid #333;background:#111;padding:16px;margin-bottom:12px;cursor:pointer;}
 .wallet-option:hover{border-color:#ff8800;background:#161616;}
 .wallet-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;}
 .wallet-name{font-size:13px;font-weight:700;color:#ff8800;}
 .wallet-desc{font-size:10px;color:#888;margin-top:2px;}
 .modal-close{width:100%;margin-top:8px;border:2px solid #555;background:transparent;color:#888;padding:14px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:2px;cursor:pointer;}
-.modal-close:hover{border-color:#ff8800;color:#ff8800;}
-
 footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-bottom:30px;letter-spacing:2px;}
-
-@media(max-width:1100px){
-  .grid-2{grid-template-columns:1fr;}
-  .overview-grid{grid-template-columns:1fr;}
-  .docs-layout{grid-template-columns:1fr;}
-  .field-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:768px){
-  .brand h1{font-size:52px;}
-  .hero-title{font-size:38px;}
-  .deploy-title{font-size:42px;}
-  .top-grid{flex-direction:column;}
-  .button-row{flex-direction:column;}
-  .status-grid{grid-template-columns:1fr;}
-  .field-grid{grid-template-columns:1fr;}
-}
+@media(max-width:1100px){.grid-2{grid-template-columns:1fr;}.overview-grid{grid-template-columns:1fr;}.docs-layout{grid-template-columns:1fr;}.field-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.brand h1{font-size:52px;}.hero-title{font-size:38px;}.deploy-title{font-size:42px;}.top-grid{flex-direction:column;}.button-row{flex-direction:column;}.status-grid{grid-template-columns:1fr;}.field-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-
 <div class="wrapper">
 
 <!-- HEADER -->
@@ -145,11 +117,7 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
         <h1>CLAUDE-20</h1>
         <p>BASE NATIVE ERC20 MINT PROTOCOL WITH FIXED SUPPLY MECHANICS, LIVE PUBLIC MINT TRACKING, ONCHAIN TRANSACTION INDEXING, AND BASE MAINNET WALLET SUPPORT.</p>
         <div class="meta">
-          <span>BASE MAINNET</span>
-          <span>21M SUPPLY</span>
-          <span>0.000015 ETH</span>
-          <span>ERC20 LIVE</span>
-          <span>MINT ACTIVE</span>
+          <span>BASE MAINNET</span><span>21M SUPPLY</span><span>0.000015 ETH</span><span>ERC20 LIVE</span><span>MINT ACTIVE</span>
         </div>
       </div>
     </div>
@@ -166,16 +134,12 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
   <button class="tab" onclick="showPage('docs',this)">DOCS</button>
 </div>
 
-<!-- ===== MINT PAGE ===== -->
+<!-- MINT PAGE -->
 <div id="page-mint" class="page active">
   <div class="grid-2">
-
     <div class="panel">
       <div class="panel-header">
-        <div class="panel-title">
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          MINT.CLAUDE20
-        </div>
+        <div class="panel-title"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>MINT.CLAUDE20</div>
         <div>LIVE</div>
       </div>
       <div class="panel-body">
@@ -192,9 +156,7 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
         <div class="progress-box">
           <div class="progress-bg"><div class="progress-fill" id="progress-fill"></div></div>
           <div class="progress-label">
-            <span id="minted-text">Loading supply...</span>
-            &nbsp;&nbsp;
-            <strong id="mint-percent">--</strong>
+            <span id="minted-text">0 / 21,000,000 public CLAUDE minted</span>&nbsp;&nbsp;<strong id="mint-percent">0%</strong>
           </div>
         </div>
         <div class="button-row">
@@ -208,66 +170,37 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
         <div class="live-banner">CLAUDE20 PUBLIC MINT ACTIVE</div>
       </div>
     </div>
-
     <div style="display:flex;flex-direction:column;gap:22px;">
       <div class="panel">
         <div class="panel-header">
-          <div class="panel-title">
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            ACTIVITY / LIVE
-          </div>
+          <div class="panel-title"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>ACTIVITY / LIVE</div>
           <div style="color:#ff8800;">●</div>
         </div>
         <div class="panel-body">
           <div class="activity-feed">
             <div class="activity-item">
-              <div class="activity-left">
-                <div class="badge orange">LIVE</div>
-                <div class="activity-info">
-                  <div class="activity-title">CLAUDE20 CONTRACT ACTIVE</div>
-                  <div class="activity-hash">0x6d98c7A619AB31878dEBB4919247ca67FaE60C98</div>
-                </div>
-              </div>
+              <div class="activity-left"><div class="badge orange">LIVE</div><div class="activity-info"><div class="activity-title">CLAUDE20 CONTRACT ACTIVE</div><div class="activity-hash">0x6d98c7A619AB31878dEBB4919247ca67FaE60C98</div></div></div>
               <div class="activity-block">BASE MAINNET</div>
             </div>
             <div class="activity-item">
-              <div class="activity-left">
-                <div class="badge orange">MINT</div>
-                <div class="activity-info">
-                  <div class="activity-title">PUBLIC ERC20 MINT ENABLED</div>
-                  <div class="activity-hash">LIVE CONTRACT INDEX ACTIVE</div>
-                </div>
-              </div>
+              <div class="activity-left"><div class="badge orange">MINT</div><div class="activity-info"><div class="activity-title">PUBLIC ERC20 MINT ENABLED</div><div class="activity-hash">LIVE CONTRACT INDEX ACTIVE</div></div></div>
               <div class="activity-block">GLOBAL</div>
             </div>
             <div class="activity-item">
-              <div class="activity-left">
-                <div class="badge orange">POOL</div>
-                <div class="activity-info">
-                  <div class="activity-title">BASE LIQUIDITY TRACKER INITIALIZED</div>
-                  <div class="activity-hash">CLAUDE20 PUBLIC POOL MONITOR</div>
-                </div>
-              </div>
+              <div class="activity-left"><div class="badge orange">POOL</div><div class="activity-info"><div class="activity-title">BASE LIQUIDITY TRACKER INITIALIZED</div><div class="activity-hash">CLAUDE20 PUBLIC POOL MONITOR</div></div></div>
               <div class="activity-block">READY</div>
             </div>
           </div>
           <div class="status-grid">
-            <div class="status-card"><div class="name">PROVIDER</div><div class="state green" id="provider-status">ONLINE</div></div>
+            <div class="status-card"><div class="name">PROVIDER</div><div class="state green">ONLINE</div></div>
             <div class="status-card"><div class="name">WALLET</div><div class="state orange" id="wallet-status">DISCONNECTED</div></div>
             <div class="status-card"><div class="name">TREASURY</div><div class="state green">ACTIVE</div></div>
             <div class="status-card"><div class="name">BASE NETWORK</div><div class="state green">CONNECTED</div></div>
           </div>
         </div>
       </div>
-
       <div class="panel">
-        <div class="panel-header">
-          <div class="panel-title">
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            INSCRIPTION / JSON
-          </div>
-          <div>BASE</div>
-        </div>
+        <div class="panel-header"><div class="panel-title"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>INSCRIPTION / JSON</div><div>BASE</div></div>
         <div class="panel-body">
           <div class="json-box" id="json-box">{
   "p":"claude-20",
@@ -284,12 +217,10 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
         </div>
       </div>
     </div>
-
   </div>
 </div>
-<!-- ===== END MINT PAGE ===== -->
 
-<!-- ===== DEPLOY PAGE ===== -->
+<!-- DEPLOY PAGE -->
 <div id="page-deploy" class="page">
   <div class="panel">
     <div class="deploy-layout">
@@ -318,9 +249,8 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
     </div>
   </div>
 </div>
-<!-- ===== END DEPLOY PAGE ===== -->
 
-<!-- ===== LAUNCHED PAGE ===== -->
+<!-- LAUNCHED PAGE -->
 <div id="page-launched" class="page">
   <div class="grid-2">
     <div class="panel">
@@ -328,16 +258,10 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
       <div class="panel-body">
         <div class="subtext">1 TOKEN INDEXED<br>LIVE CACHE UPDATE ACTIVE</div>
         <table class="token-table">
-          <tr>
-            <th>TOKEN</th>
-            <th>SUPPLY</th>
-            <th>MINT</th>
-            <th>STATUS</th>
-          </tr>
+          <tr><th>TOKEN</th><th>SUPPLY</th><th>MINT</th><th>STATUS</th></tr>
           <tr>
             <td><strong>CLAUDE</strong><br><span style="font-size:10px;color:#888;">0x6d98...60C98</span></td>
-            <td>21,000,000</td>
-            <td>1000 / mint</td>
+            <td>21,000,000</td><td>1000 / mint</td>
             <td><span class="token-status">LIVE</span></td>
           </tr>
         </table>
@@ -351,13 +275,27 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
     </div>
   </div>
 </div>
-<!-- ===== END LAUNCHED PAGE ===== -->
 
-<!-- ===== OVERVIEW PAGE ===== -->
+<!-- OVERVIEW PAGE -->
 <div id="page-overview" class="page">
   <div class="overview-grid">
     <div class="panel">
       <div class="panel-header">WHAT / CLAUDE20</div>
       <div class="panel-body">
         <div class="subtext" style="font-size:13px;color:#ddd;">
-      
+          CLAUDE20 is a Base-native ERC20 mint protocol with fixed supply mechanics.<br><br>
+          Users mint directly from the deployed smart contract using Base ETH transactions.<br><br>
+          Every accepted mint transaction permanently updates the live public supply tracker and instantly credits 1000 CLAUDE to the caller wallet.<br><br>
+          The protocol interface is designed around inscription-inspired mint mechanics, live Base activity indexing, and immutable public supply visibility.<br><br>
+          The entire frontend experience is optimized around a retro BRC20-inspired interface layer while operating fully on Base Mainnet infrastructure.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel" style="margin-bottom:18px;">
+        <div class="panel-header">SUPPLY</div>
+        <div class="panel-body">
+          <div class="overview-list">
+            <div><span>Total Supply</span><strong>21,000,000</strong></div>
+            <div><span>Mint Size</span><strong>1000 CLAUDE</strong></div>
+  
