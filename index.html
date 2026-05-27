@@ -700,8 +700,11 @@ percent + "%";
 async function mintClaude(){
 
 if(!window.ethereum){
-alert("Install Wallet");
+
+alert("Install MetaMask / Coinbase Wallet");
+
 return;
+
 }
 
 try{
@@ -713,18 +716,43 @@ method:'eth_requestAccounts'
 
 const wallet = accounts[0];
 
+document.getElementById("wallet-status")
+.innerText = "CONNECTED";
+
+document.getElementById("connect-btn")
+.innerText =
+wallet.slice(0,6)
++
+"..."
++
+wallet.slice(-4);
+
 const tx = {
+
 from: wallet,
+
 to: CONTRACT_ADDRESS,
-value: "0xD693A4000"
+
+value: "0xD693A400",
+
+data: "0x1249c58b"
+
 };
 
 await ethereum.request({
+
 method:'eth_sendTransaction',
+
 params:[tx]
+
 });
 
 alert("1000 CLAUDE Minted Successfully");
+
+window.open(
+"https://twitter.com/intent/tweet?text=JUST%20MINTED%201000%20%24CLAUDE%20⚡%0A%0ABASE%20MAINNET%20ERC20%20IS%20LIVE.%0A%0AContract%3A%0A0x6ff250A9a2925a56958975bbcEf428086b83a7d8%0A%0AMint%20yours%20now%20before%20supply%20runs%20out.%0A%0A%23BASE%20%23CLAUDE20%20%23ERC20",
+"_blank"
+);
 
 let minted =
 parseInt(
@@ -747,7 +775,6 @@ console.log(err);
 alert("Mint Failed");
 
 }
-
 
 updateMintUI();
 
