@@ -699,9 +699,55 @@ percent + "%";
 
 async function mintClaude(){
 
-alert("Mint Working");
+if(!window.ethereum){
+alert("Install Wallet");
+return;
+}
+
+try{
+
+const accounts =
+await ethereum.request({
+method:'eth_requestAccounts'
+});
+
+const wallet = accounts[0];
+
+const tx = {
+from: wallet,
+to: CONTRACT_ADDRESS,
+value: "0xD693A4000"
+};
+
+await ethereum.request({
+method:'eth_sendTransaction',
+params:[tx]
+});
+
+alert("1000 CLAUDE Minted Successfully");
+
+let minted =
+parseInt(
+localStorage.getItem("claudeMinted") || "0"
+);
+
+minted += 1000;
+
+localStorage.setItem(
+"claudeMinted",
+minted
+);
+
+updateMintUI();
+
+}catch(err){
+
+console.log(err);
+
+alert("Mint Failed");
 
 }
+
 
 updateMintUI();
 
