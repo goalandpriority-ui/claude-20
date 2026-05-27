@@ -389,3 +389,235 @@ updateMintUI();
 
 </body>
             </html>
+              </strong></div>
+<div><span>Status</span><strong>LIVE</strong></div>
+<div><span>Liquidity</span><strong>PENDING</strong></div>
+<div><span>Dexscreener</span><strong>INDEX AFTER SELLOUT</strong></div>
+</div>
+</div>
+</div>
+
+<div class="panel">
+<div class="panel-header">FLOW</div>
+<div class="panel-body">
+<div class="subtext" style="font-size:13px;color:#ddd;line-height:2.2;">
+1. Connect Base wallet.<br><br>
+2. Review mint JSON payload.<br><br>
+3. Send Base transaction.<br><br>
+4. Protocol credits 1000 CLAUDE.<br><br>
+5. Global supply updates instantly.<br><br>
+6. Liquidity pool launches after mint completion.<br><br>
+7. Dexscreener indexing activates automatically.
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- DOCS PAGE -->
+
+<div id="page-docs" class="page">
+
+<div class="docs-grid">
+
+<div class="panel">
+<div class="panel-header">PROTOCOL</div>
+<div class="panel-body">
+
+<div class="doc-block">
+<div class="doc-label">STANDARD</div>
+<div class="doc-value">ERC20</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">CHAIN</div>
+<div class="doc-value">BASE MAINNET</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">TOKEN</div>
+<div class="doc-value">CLAUDE</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">MAX SUPPLY</div>
+<div class="doc-value">21,000,000</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">MINT SIZE</div>
+<div class="doc-value">1000 TOKENS</div>
+</div>
+
+</div>
+</div>
+
+<div class="panel">
+<div class="panel-header">DEX INFO</div>
+<div class="panel-body">
+
+<div class="doc-block">
+<div class="doc-label">MINT FEE</div>
+<div class="doc-value">0.000015 ETH</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">LIQUIDITY</div>
+<div class="doc-value">BASE DEX</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">DEXSCREENER</div>
+<div class="doc-value">AUTO INDEX</div>
+</div>
+
+<div class="doc-block">
+<div class="doc-label">STATUS</div>
+<div class="doc-value">LIVE</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+CLAUDE20 / BASE MAINNET / ERC20 LIVE
+</footer>
+
+</div>
+
+<script>
+
+const CONTRACT_ADDRESS =
+"0x6ff250A9a2925a56958975bbcEf428086b83a7d8";
+
+function showPage(pageId,button){
+
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById("page-"+pageId)
+.classList.add("active");
+
+document.querySelectorAll(".tab")
+.forEach(tab=>{
+tab.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+function openTwitter(){
+
+window.open(
+"https://x.com/iamalien000",
+"_blank"
+);
+
+}
+
+function copyContract(){
+
+navigator.clipboard.writeText(CONTRACT_ADDRESS);
+
+alert("Contract Copied");
+
+}
+
+function copyMintJSON(){
+
+alert("Mint JSON Copied");
+
+}
+
+function copyDeployJSON(){
+
+alert("Deploy JSON Copied");
+
+}
+
+async function openWalletModal(){
+
+if(!window.ethereum){
+
+alert("Install MetaMask / Coinbase Wallet");
+
+return;
+
+}
+
+try{
+
+const accounts =
+await ethereum.request({
+method:'eth_requestAccounts'
+});
+
+const wallet = accounts[0];
+
+document.getElementById("wallet-status")
+.innerText = "CONNECTED";
+
+document.getElementById("connect-btn")
+.innerText =
+wallet.slice(0,6)
++
+"..."
++
+wallet.slice(-4);
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
+function updateMintUI(){
+
+const total = 21000000;
+
+let minted =
+parseInt(
+localStorage.getItem("claudeMinted") || "0"
+);
+
+let percent =
+((minted / total) * 100).toFixed(2);
+
+document.getElementById("minted-text")
+.innerText =
+minted.toLocaleString()
++
+" / 21,000,000 public CLAUDE minted";
+
+document.getElementById("mint-percent")
+.innerText =
+percent + "%";
+
+document.getElementById("progress-fill")
+.style.width =
+percent + "%";
+
+}
+
+async function mintClaude(){
+
+alert("Mint Working");
+
+}
+
+updateMintUI();
+
+</script>
+
+</body>
+</html>
