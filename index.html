@@ -298,3 +298,94 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
             <div><span>Mint Fee</span><strong>0.000015 ETH</strong></div>
             <div><span>Network</span><strong>Base Mainnet</strong></div>
             <div><span>Contract</span><strong s
+<script>
+
+const CONTRACT_ADDRESS =
+"0x6ff250A9a2925a56958975bbcEf428086b83a7d8";
+
+function showPage(pageId,button){
+
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById("page-"+pageId)
+.classList.add("active");
+
+document.querySelectorAll(".tab")
+.forEach(tab=>{
+tab.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+function openTwitter(){
+
+window.open(
+"https://x.com/iamalien000",
+"_blank"
+);
+
+}
+
+function copyContract(){
+
+navigator.clipboard.writeText(CONTRACT_ADDRESS);
+
+alert("Contract Copied");
+
+}
+
+async function openWalletModal(){
+
+if(!window.ethereum){
+
+alert("Install MetaMask / Coinbase Wallet");
+
+return;
+
+}
+
+try{
+
+const accounts =
+await ethereum.request({
+method:'eth_requestAccounts'
+});
+
+const wallet = accounts[0];
+
+document.getElementById("wallet-status")
+.innerText = "CONNECTED";
+
+document.getElementById("connect-btn")
+.innerText =
+wallet.slice(0,6)
++
+"..."
++
+wallet.slice(-4);
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
+function mintClaude(){
+
+alert("Mint Working");
+
+}
+
+updateMintUI();
+
+</script>
+
+</body>
+            </html>
