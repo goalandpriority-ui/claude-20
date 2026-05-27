@@ -292,3 +292,315 @@ footer{margin-top:50px;text-align:center;font-size:11px;color:#666;padding-botto
           CLAUDE20 is a Base-native ERC20 mint protocol with fixed supply mechanics.<br><br>
           Users mint directly from the deployed smart contract using Base ETH transactions.<br><br>
           Every accepted m
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.1/dist/ethers.umd.min.js"></script>
+
+<script>
+
+const CONTRACT_ADDRESS =
+"0x6ff250A9a2925a56958975bbcEf428086b83a7d8";
+
+const CONTRACT_ABI = [
+    "function mint() payable",
+    "function totalSupply() view returns (uint256)"
+];
+
+let provider;
+let signer;
+let contract;
+let connectedWallet = null;
+
+const MINT_PRICE =
+    ethers.parseEther("0.000015");
+
+
+// ========================
+// PAGE SWITCHING
+// ========================
+
+function showPage(pageId, button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    document
+        .getElementById("page-" + pageId)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+    button.classList.add("active");
+}
+
+
+// ========================
+// TWITTER
+// ========================
+
+function openTwitter(){
+
+    window.open(
+        "https://twitter.com",
+        "_blank"
+    );
+}
+
+
+// ========================
+// COPY CONTRACT
+// ========================
+
+function copyContract(){
+
+    navigator.clipboard.writeText(
+        CONTRACT_ADDRESS
+    );
+
+    alert("Contract copied");
+}
+
+
+// ========================
+// COPY JSON
+// ========================
+
+function copyMintJSON(){
+
+const text =
+`{
+  "p":"claude-20",
+  "op":"mint",
+  "tick":"CLAUDE",
+  "amt":"1000",
+  "chain":"base",
+  "fee":"0.000015"
+}`;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Mint JSON copied");
+}
+
+
+function copyDeployJSON(){
+
+const text =
+`{
+  "p":"claude-20",
+  "op":"deploy",
+  "tick":"CLAUDE",
+  "max":"21000000",
+  "lim":"1000"
+}`;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Deploy JSON copied");
+}
+
+
+// ========================
+// CONNECT WALLET
+// ========================
+
+async function openWalletModal(){
+
+    if(!window.ethereum){
+
+        alert("Please install MetaMask");
+
+        return;
+    }
+
+    try{
+
+        provider =
+            new ethers.BrowserProvider(
+                window.ethereum
+            );
+
+        await provider.send(
+            "eth_requestAccounts",
+            []
+        );
+
+        signer =
+            await provider.getSigner();
+
+        connectedWallet =
+            await signer.getAddress();
+
+        contract =
+            new ethers.Contract(
+                CONTRACT_ADDRESS,
+                CONTRACT_ABI,
+                signer
+            );
+
+        document
+            .getElementById("connect-btn")
+            .innerText =
+            connectedWallet.slice(0,6)
+            + "..."
+            + connectedWallet.slice(-4);
+
+        document
+            .getElementById("wallet-status")
+            .innerText = "CONNECTED";
+
+    }catch(err){
+
+        console.log(err);
+
+        alert("Wallet connection failed");
+    }
+}
+
+
+// ========================
+// MINT
+// ========================
+
+async function mintClaude(){
+
+    try{
+
+        if(!contract){
+
+            await openWalletModal();
+        }
+
+        const tx =
+            await contract.mint({
+                value: MINT_PRICE
+            });
+
+        alert(
+            "Mint transaction submitted"
+        );
+
+        await tx.wait();
+
+        alert(
+            "1000 CLAUDE minted successfully"
+        );
+
+        updateSupply();
+
+        shareMintOnTwitter();
+
+    }catch(err){
+
+        console.log(err);
+
+        alert("Mint failed");
+    }
+}
+
+
+// ========================
+// UPDATE SUPPLY
+// ========================
+
+async function updateSupply(){
+
+    try{
+
+        const readProvider =
+            new ethers.JsonRpcProvider(
+                "https://mainnet.base.org"
+            );
+
+        const readContract =
+            new ethers.Contract(
+                CONTRACT_ADDRESS,
+                CONTRACT_ABI,
+                readProvider
+            );
+
+        const supply =
+            await readContract.totalSupply();
+
+        const formatted =
+            Number(
+                ethers.formatUnits(
+                    supply,
+                    18
+                )
+            );
+
+        const percent =
+            (
+                formatted /
+                21000000
+            ) * 100;
+
+        document
+            .getElementById("minted-text")
+            .innerText =
+            formatted.toLocaleString()
+            + " / 21,000,000 public CLAUDE minted";
+
+        document
+            .getElementById("mint-percent")
+            .innerText =
+            percent.toFixed(2)
+            + "%";
+
+        document
+            .getElementById("progress-fill")
+            .style.width =
+            percent + "%";
+
+    }catch(err){
+
+        console.log(err);
+    }
+}
+
+
+// ========================
+// TWITTER SHARE
+// ========================
+
+function shareMintOnTwitter(){
+
+const tweet =
+`JUST MINTED 1000 $CLAUDE ⚡
+
+BASE MAINNET ERC20 IS LIVE.
+
+Contract:
+0x6ff250A9a2925a56958975bbcEf428086b83a7d8
+
+Mint yours now before supply runs out.
+
+#BASE #CLAUDE20 #ERC20`;
+
+    const twitterUrl =
+        "https://twitter.com/intent/tweet?text="
+        + encodeURIComponent(tweet);
+
+    window.open(
+        twitterUrl,
+        "_blank"
+    );
+}
+
+
+// ========================
+// AUTO LOAD
+// ========================
+
+updateSupply();
+
+</script>
+
+</body>
+        </html>
