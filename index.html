@@ -699,79 +699,78 @@ percent + "%";
 
 async function mintClaude(){
 
-if(!window.ethereum){
-alert("Install MetaMask / Coinbase Wallet");
-return;
-}
+  if(!window.ethereum){
+    alert("Install MetaMask / Coinbase Wallet");
+    return;
+  }
 
-try{
+  try{
 
-const accounts =
-await ethereum.request({
-method:'eth_requestAccounts'
-});
+    const accounts =
+    await ethereum.request({
+      method:'eth_requestAccounts'
+    });
 
-const wallet = accounts[0];
+    const wallet = accounts[0];
 
-const tx = {
-from: wallet,
-to: CONTRACT_ADDRESS,
-value: "0xDAF6F00",
-data: "0x1249c58b"
-};
+    const tx = {
+      from: wallet,
+      to: CONTRACT_ADDRESS,
+      value: "0xDAF6F00",
+      data: "0x1249c58b"
+    };
 
-const txHash =
-await ethereum.request({
-method:'eth_sendTransaction',
-params:[tx]
-});
+    const txHash =
+    await ethereum.request({
+      method:'eth_sendTransaction',
+      params:[tx]
+    });
 
-alert("1000 CLAUDE Minted Successfully!");
+    alert("1000 CLAUDE Minted Successfully!");
 
-let minted =
-parseInt(
-localStorage.getItem("claudeMinted") || "0"
-);
+    let minted =
+    parseInt(
+      localStorage.getItem("claudeMinted") || "0"
+    );
 
-minted += 1000;
+    minted += 1000;
 
-localStorage.setItem(
-"claudeMinted",
-minted
-);
+    localStorage.setItem(
+      "claudeMinted",
+      minted
+    );
 
-updateMintUI();
+    updateMintUI();
 
-const share =
-confirm(
-"Share your mint on Twitter?"
-);
+    const share =
+    confirm(
+      "Share your mint on Twitter?"
+    );
 
-if(share){
+    if(share){
+      window.open(
+        "https://twitter.com/intent/tweet?text=JUST%20MINTED%201000%20CLAUDE%20ON%2...",
+        "_blank"
+      );
+    }
 
-window.open(
-"https://twitter.com/intent/tweet?text=JUST%20MINTED%201000%20CLAUDE20%20ON%20BASE%20MAINNET%20🔥%20%23CLAUDE20",
-"_blank"
-);
+    window.open(
+      "https://basescan.org/tx/" + txHash,
+      "_blank"
+    );
 
-}
+  }catch(err){
 
-window.open(
-"https://basescan.org/tx/" + txHash,
-"_blank"
-);
+    console.log(err);
 
-}catch(err){
+    alert(
+      err.message || "Mint Failed"
+    );
 
-console.log(err);
-
-alert(
-err.message || "Mint Failed"
-);
-
-}
+  }
 
 }
+
 updateMintUI();
 
 </script>
