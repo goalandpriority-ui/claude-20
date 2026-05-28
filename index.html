@@ -2063,10 +2063,9 @@ mintBtn.disabled = true;
 
 // REAL MINT PRICE
 const MINT_PRICE =
-"0xd59f80";
+"0xd4a51000";
 
 // REAL mint() selector
-// mint()
 const tx = {
 
 from: wallet,
@@ -2079,13 +2078,15 @@ data: "0x1249c58b"
 
 };
 
+console.log(tx);
+
 // SEND TX
 const txHash =
 await ethereum.request({
 
-method:'eth_sendTransaction',
+method: 'eth_sendTransaction',
 
-params:[tx]
+params: [tx]
 
 });
 
@@ -2103,60 +2104,32 @@ document.getElementById("tx-hash");
 
 if(txBox){
 
-txBox.innerHTML = `
-<div style="
-margin-top:14px;
-padding:14px;
-border:2px solid #ff8800;
-word-break:break-all;
-font-size:11px;
-line-height:1.8;
-background:#111;
-">
+txBox.innerHTML =
 
-<div style="
-color:#ff8800;
-margin-bottom:8px;
-font-size:12px;
-letter-spacing:2px;
-">
-
-TRANSACTION HASH
-
-</div>
-
-<a
-href="https://basescan.org/tx/${txHash}"
-target="_blank"
-style="
-color:#ff8800;
-text-decoration:none;
-font-size:12px;
-"
->
-
-VIEW TRANSACTION
-
-</a>
-
-</div>
-`;
+'<a href="https://basescan.org/tx/' +
+txHash +
+'" target="_blank" style="color:#ff8800;font-size:12px;text-decoration:none;">VIEW TRANSACTION</a>';
 
 }
 
 // X SHARE CONTENT
 const shareText =
-`🚀 I just minted 1000 CLAUDE on Base Mainnet!
 
-⚡ Public Mint Live
-⚡ ERC20 Protocol
-⚡ 21M Fixed Supply
-⚡ Base Ecosystem
+"🚀 I just minted 1000 CLAUDE on Base Mainnet!\n\n" +
 
-🌐 https://claude20.site
+"⚡ Public Mint Live\n" +
 
-Tx:
-https://basescan.org/tx/${txHash}`;
+"⚡ ERC20 Protocol\n" +
+
+"⚡ 21M Fixed Supply\n" +
+
+"⚡ Base Ecosystem\n\n" +
+
+"🌐 https://claude20.site\n\n" +
+
+"Tx:\nhttps://basescan.org/tx/" +
+
+txHash;
 
 // PREVIEW
 document
