@@ -1948,32 +1948,34 @@ async function updateMintUI(){
 
 try{
 
+if(!window.ethereum){
+return;
+}
+
 const provider =
-new ethers.providers.Web3Provider(
-window.ethereum
-);
+new ethers.providers.Web3Provider(window.ethereum);
 
 const contract =
 new ethers.Contract(
-
 CONTRACT_ADDRESS,
-
-[
-"function totalSupply() view returns(uint256)"
-],
-
+CONTRACT_ABI,
 provider
-
 );
 
+// REAL TOTAL SUPPLY
 const supply =
 await contract.totalSupply();
 
+// CONVERT FROM WEI
 const minted =
 Number(
-ethers.utils.formatUnits(supply,18)
+ethers.utils.formatUnits(
+supply,
+18
+)
 );
 
+// PERCENT
 const percent =
 (
 (minted / TOTAL_SUPPLY)
@@ -1981,6 +1983,7 @@ const percent =
 100
 ).toFixed(2);
 
+// UPDATE TEXT
 document
 .getElementById("minted-text")
 .innerText =
@@ -1991,14 +1994,16 @@ minted.toLocaleString()
 
 " / 21,000,000 public CLAUDE minted";
 
+// UPDATE %
 document
 .getElementById("mint-percent")
 .innerText =
 
 percent + "%";
 
+// UPDATE BAR
 document
-.getElementById("progress-fill")
+.getElementById("mint-progress")
 .style.width =
 
 percent + "%";
