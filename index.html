@@ -699,79 +699,79 @@ percent + "%";
 
 async function mintClaude(){
 
-  if(!window.ethereum){
-    alert("Install MetaMask / Coinbase Wallet");
-    return;
-  }
+if(!window.ethereum){
+alert("Install MetaMask / Coinbase Wallet");
+return;
+}
 
-  try{
+try{
 
-    const accounts =
-    await ethereum.request({
-      method:'eth_requestAccounts'
-    });
+const accounts = await ethereum.request({
+method:'eth_requestAccounts'
+});
 
-    const wallet = accounts[0];
+const wallet = accounts[0];
 
-    const tx = {
-      from: wallet,
-      to: CONTRACT_ADDRESS,
-      value: "0xDAF6F00",
-      data: "0x1249c58b"
-    };
+const tx = {
+from: wallet,
+to: CONTRACT_ADDRESS,
 
-    const txHash =
-    await ethereum.request({
-      method:'eth_sendTransaction',
-      params:[tx]
-    });
+// 0.000015 ETH
+value: "0xd59f80",
 
-    alert("1000 CLAUDE Minted Successfully!");
+// mint() selector
+data: "0x1249c58b"
+};
 
-    let minted =
-    parseInt(
-      localStorage.getItem("claudeMinted") || "0"
-    );
+const txHash = await ethereum.request({
+method:'eth_sendTransaction',
+params:[tx]
+});
 
-    minted += 1000;
+alert("1000 CLAUDE Minted Successfully!");
 
-    localStorage.setItem(
-      "claudeMinted",
-      minted
-    );
+let minted =
+parseInt(
+localStorage.getItem("claudeMinted") || "0"
+);
 
-    updateMintUI();
+minted += 1000;
 
-    const share =
-    confirm(
-      "Share your mint on Twitter?"
-    );
+localStorage.setItem(
+"claudeMinted",
+minted
+);
 
-    if(share){
-      window.open(
-        "https://twitter.com/intent/tweet?text=JUST%20MINTED%201000%20CLAUDE%20ON%2...",
-        "_blank"
-      );
-    }
+updateMintUI();
 
-    window.open(
-      "https://basescan.org/tx/" + txHash,
-      "_blank"
-    );
+const share = confirm(
+"Share your mint on Twitter?"
+);
 
-  }catch(err){
+if(share){
+window.open(
+"https://twitter.com/intent/tweet?text=JUST%20MINTED%201000%20CLAUDE%20ON%20BASE",
+"_blank"
+);
+}
 
-    console.log(err);
+window.open(
+"https://basescan.org/tx/" + txHash,
+"_blank"
+);
 
-    alert(
-      err.message || "Mint Failed"
-    );
+}catch(err){
 
-  }
+console.log(err);
+
+alert(
+err.message || "Mint Failed"
+);
 
 }
 
-updateMintUI();
+  }
+  updateMintUI();
 
 </script>
 
