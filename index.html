@@ -2051,10 +2051,9 @@ mintBtn.disabled = true;
 
 // REAL MINT PRICE
 const MINT_PRICE =
-"0xd59f80";
+"0xda475abf000";
 
-// REAL mint() selector
-// mint()
+// mint() selector
 const tx = {
 
 from: wallet,
@@ -2067,13 +2066,15 @@ data: "0x1249c58b"
 
 };
 
+console.log(tx);
+
 // SEND TX
 const txHash =
 await ethereum.request({
 
-method:'eth_sendTransaction',
+method: 'eth_sendTransaction',
 
-params:[tx]
+params: [tx]
 
 });
 
@@ -2097,7 +2098,7 @@ minted
 
 updateMintUI();
 
-// TX HASH BOX
+// SIMPLE TX LINK
 const txBox =
 document.getElementById("tx-hash");
 
@@ -2105,156 +2106,9 @@ if(txBox){
 
 txBox.innerHTML =
 
-`
-<div style="
-margin-top:14px;
-padding:14px;
-border:2px solid #ff8800;
-word-break:break-all;
-font-size:11px;
-line-height:1.8;
-background:#111;
-">
-async function mintClaude(){
-
-if(!window.ethereum){
-
-alert(
-"Install MetaMask / Coinbase Wallet"
-);
-
-return;
-
-}
-
-try{
-
-const accounts =
-await ethereum.request({
-method:'eth_requestAccounts'
-});
-
-const wallet =
-accounts[0];
-
-const chainId =
-await ethereum.request({
-method:'eth_chainId'
-});
-
-// BASE MAINNET CHECK
-if(chainId !== "0x2105"){
-
-alert(
-"Switch to Base Mainnet"
-);
-
-return;
-
-}
-
-const mintBtn =
-document.querySelector(".btn-dark");
-
-mintBtn.innerText =
-"MINTING...";
-
-mintBtn.disabled = true;
-
-// REAL MINT PRICE
-const MINT_PRICE =
-"0xda475abf000";
-
-// mint() selector
-const tx = {
-
-from: wallet,
-
-to: CONTRACT_ADDRESS,
-
-value: MINT_PRICE,
-
-data: "0x1249c58b"
-
-};
-
-console.log(tx);
-
-// SEND TRANSACTION
-const txHash =
-await ethereum.request({
-
-method: 'eth_sendTransaction',
-
-params: [tx]
-
-});
-
-// SUBMITTED ALERT
-alert(
-"1000 CLAUDE Mint Submitted!"
-);
-
-// UPDATE UI
-let minted =
-parseInt(
-localStorage.getItem("claudeMinted") || "0"
-);
-
-minted += 1000;
-
-localStorage.setItem(
-"claudeMinted",
-minted
-);
-
-updateMintUI();
-
-// TX HASH BOX
-const txBox =
-document.getElementById("tx-hash");
-
-if(txBox){
-
-txBox.innerHTML = `
-
-<div style="
-margin-top:14px;
-padding:14px;
-border:2px solid #ff8800;
-word-break:break-all;
-font-size:11px;
-line-height:1.8;
-background:#111;
-">
-
-<div style="
-color:#ff8800;
-margin-bottom:8px;
-font-size:12px;
-letter-spacing:2px;
-">
-
-TRANSACTION HASH
-
-</div>
-
-<a
-href="https://basescan.org/tx/${txHash}"
-target="_blank"
-style="
-color:#fff;
-text-decoration:none;
-"
->
-
-${txHash}
-
-</a>
-
-</div>
-
-`;
+'<a href="https://basescan.org/tx/' +
+txHash +
+'" target="_blank" style="color:#ff8800;font-size:12px;">VIEW TRANSACTION</a>';
 
 }
 
