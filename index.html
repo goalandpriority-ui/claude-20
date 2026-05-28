@@ -2003,7 +2003,6 @@ console.log(err);
 }
 
 }
-
 async function mintClaude(){
 
 if(!window.ethereum){
@@ -2031,6 +2030,7 @@ await ethereum.request({
 method:'eth_chainId'
 });
 
+// BASE MAINNET CHECK
 if(chainId !== "0x2105"){
 
 alert(
@@ -2049,6 +2049,12 @@ mintBtn.innerText =
 
 mintBtn.disabled = true;
 
+// REAL MINT PRICE
+const MINT_PRICE =
+"0xd59f80";
+
+// REAL mint() selector
+// mint()
 const tx = {
 
 from: wallet,
@@ -2057,10 +2063,11 @@ to: CONTRACT_ADDRESS,
 
 value: MINT_PRICE,
 
-data: "0xa0712d68"
+data: "0x1249c58b"
 
 };
 
+// SEND TX
 const txHash =
 await ethereum.request({
 
@@ -2070,29 +2077,89 @@ params:[tx]
 
 });
 
+// SUCCESS ALERT
 alert(
-"1000 CLAUDE Minted Successfully!"
+"1000 CLAUDE Mint Submitted!"
 );
 
-document
-.getElementById("twitter-preview")
-.innerText =
+// UPDATE UI
+let minted =
+parseInt(
+localStorage.getItem("claudeMinted") || "0"
+);
 
-"I just minted 1000 CLAUDE on Base Mainnet.\n\nTransaction:\nhttps://basescan.org/tx/"
-+
-txHash;
+minted += 1000;
 
-document
-.getElementById("share-modal")
-.classList.add("show");
-
-window.open(
-"https://basescan.org/tx/" + txHash,
-"_blank"
+localStorage.setItem(
+"claudeMinted",
+minted
 );
 
 updateMintUI();
 
+// TX HASH BOX
+const txBox =
+document.getElementById("tx-hash");
+
+if(txBox){
+
+txBox.innerHTML =
+
+`
+<div style="
+margin-top:14px;
+padding:14px;
+border:2px solid #ff8800;
+word-break:break-all;
+font-size:11px;
+line-height:1.8;
+background:#111;
+">
+
+<div style="
+color:#ff8800;
+margin-bottom:8px;
+font-size:12px;
+letter-spacing:2px;
+">
+
+TRANSACTION HASH
+
+</div>
+
+<a
+href="https://basescan.org/tx/${txHash}"
+target="_blank"
+style="
+color:#fff;
+text-decoration:none;
+"
+>
+
+${txHash}
+
+</a>
+
+</div>
+`;
+
+}
+
+// X SHARE CONTENT
+document
+.getElementById("twitter-preview")
+.innerText =
+
+"🚀 I just minted 1000 CLAUDE on Base Mainnet!\n\n⚡ Public Mint Live\n⚡ ERC20 Protocol\n⚡ 21M Fixed Supply\n⚡ Base Mainnet Active\n\nMint yours now 👇\nhttps://claude20.site\n\nTransaction:\nhttps://basescan.org/tx/"
++
+txHash;
+
+// OPEN SHARE MODAL
+document
+.getElementById("share-modal")
+.classList.add("show");
+
+// RESET BUTTON
 mintBtn.innerText =
 "MINT NOW";
 
@@ -2103,9 +2170,13 @@ mintBtn.disabled = false;
 console.log(err);
 
 alert(
+
 err.reason ||
+
 err.message ||
+
 "Mint Failed"
+
 );
 
 const mintBtn =
@@ -2119,7 +2190,6 @@ mintBtn.disabled = false;
 }
 
 }
-
 updateMintUI();
 
 setInterval(
