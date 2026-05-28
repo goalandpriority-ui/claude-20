@@ -2068,34 +2068,30 @@ mintBtn.innerText =
 "MINTING...";
 
 mintBtn.disabled = true;
-
 // REAL MINT PRICE
 const MINT_PRICE = "0xda475abf000";
 
-// REAL mint() selector
-const tx = {
+// REAL CONTRACT MINT
+const signer =
+provider.getSigner();
 
-from: wallet,
+const contract =
+new ethers.Contract(
+CONTRACT_ADDRESS,
+CONTRACT_ABI,
+signer
+);
 
-to: CONTRACT_ADDRESS,
-
-value: MINT_PRICE,
-
-data: "0x1249c58b"
-
-};
-
-console.log(tx);
-
-// SEND TX
-const txHash =
-await ethereum.request({
-
-method: 'eth_sendTransaction',
-
-params: [tx]
-
+const tx =
+await contract.mint({
+value: MINT_PRICE
 });
+
+const receipt =
+await tx.wait();
+
+const txHash =
+receipt.transactionHash;
 
 // SUCCESS ALERT
 alert(
