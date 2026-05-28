@@ -2115,6 +2115,118 @@ font-size:11px;
 line-height:1.8;
 background:#111;
 ">
+async function mintClaude(){
+
+if(!window.ethereum){
+
+alert(
+"Install MetaMask / Coinbase Wallet"
+);
+
+return;
+
+}
+
+try{
+
+const accounts =
+await ethereum.request({
+method:'eth_requestAccounts'
+});
+
+const wallet =
+accounts[0];
+
+const chainId =
+await ethereum.request({
+method:'eth_chainId'
+});
+
+// BASE MAINNET CHECK
+if(chainId !== "0x2105"){
+
+alert(
+"Switch to Base Mainnet"
+);
+
+return;
+
+}
+
+const mintBtn =
+document.querySelector(".btn-dark");
+
+mintBtn.innerText =
+"MINTING...";
+
+mintBtn.disabled = true;
+
+// REAL MINT PRICE
+const MINT_PRICE =
+"0xda475abf000";
+
+// mint() selector
+const tx = {
+
+from: wallet,
+
+to: CONTRACT_ADDRESS,
+
+value: MINT_PRICE,
+
+data: "0x1249c58b"
+
+};
+
+console.log(tx);
+
+// SEND TRANSACTION
+const txHash =
+await ethereum.request({
+
+method: 'eth_sendTransaction',
+
+params: [tx]
+
+});
+
+// SUBMITTED ALERT
+alert(
+"1000 CLAUDE Mint Submitted!"
+);
+
+// UPDATE UI
+let minted =
+parseInt(
+localStorage.getItem("claudeMinted") || "0"
+);
+
+minted += 1000;
+
+localStorage.setItem(
+"claudeMinted",
+minted
+);
+
+updateMintUI();
+
+// TX HASH BOX
+const txBox =
+document.getElementById("tx-hash");
+
+if(txBox){
+
+txBox.innerHTML = `
+
+<div style="
+margin-top:14px;
+padding:14px;
+border:2px solid #ff8800;
+word-break:break-all;
+font-size:11px;
+line-height:1.8;
+background:#111;
+">
 
 <div style="
 color:#ff8800;
@@ -2141,6 +2253,7 @@ ${txHash}
 </a>
 
 </div>
+
 `;
 
 }
@@ -2150,7 +2263,7 @@ document
 .getElementById("twitter-preview")
 .innerText =
 
-"🚀 I just minted 1000 CLAUDE on Base Mainnet!\n\n⚡ Public Mint Live\n⚡ ERC20 Protocol\n⚡ 21M Fixed Supply\n⚡ Base Mainnet Active\n\nMint yours now 👇\nhttps://claude20.site\n\nTransaction:\nhttps://basescan.org/tx/"
+"🚀 I just minted 1000 CLAUDE on Base Mainnet!\n\n⚡ Public Mint Live\n⚡ ERC20 Protocol\n⚡ 21M Fixed Supply\n⚡ Base Ecosystem\n\n🌐 https://claude20.site\n\nTx:\nhttps://basescan.org/tx/"
 +
 txHash;
 
@@ -2190,13 +2303,13 @@ mintBtn.disabled = false;
 }
 
 }
+
 updateMintUI();
 
 setInterval(
 updateMintUI,
 15000
 );
-
 </script>
 
 </body>
