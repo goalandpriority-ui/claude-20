@@ -1808,7 +1808,7 @@ const MINT_AMOUNT =
 1000;
 
 const MINT_PRICE =
-"0xd59f80";
+"0.000015";
   const CONTRACT_ABI = [
 
 "function totalSupply() view returns (uint256)",
@@ -2069,8 +2069,6 @@ mintBtn.innerText =
 "MINTING...";
 
 mintBtn.disabled = true;
-// REAL MINT PRICE
-const MINT_PRICE = "0xda475abf000";
 
 // REAL CONTRACT MINT
 const signer =
@@ -2085,7 +2083,10 @@ signer
 
 const tx =
 await contract.mint({
-value: MINT_PRICE
+value:
+ethers.utils.parseEther(
+MINT_PRICE
+)
 });
 
 const receipt =
