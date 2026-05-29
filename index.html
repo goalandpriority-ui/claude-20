@@ -1617,138 +1617,98 @@ STATUS
 
 <div id="page-docs" class="page">
 
-<div class="docs-grid">
+<div class="docs-layout">
+
+<div class="docs-sidebar">
 
 <div class="panel">
-
-<div class="panel-header">
-DEPLOY JSON
-</div>
+<div class="panel-header">INDEX</div>
 
 <div class="panel-body">
 
-<div class="doc-block">
-<div class="doc-label">
-PROTOCOL
-</div>
-<div class="doc-value">
-claude-20
-</div>
-</div>
+<div class="docs-menu-item">01 / PROTOCOL</div>
+<div class="docs-menu-item">02 / MINT</div>
+<div class="docs-menu-item">03 / TOKENOMICS</div>
+<div class="docs-menu-item">04 / CONTRACT</div>
+<div class="docs-menu-item">05 / JSON</div>
 
-<div class="doc-block">
-<div class="doc-label">
-OPERATION
-</div>
-<div class="doc-value">
-deploy
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-TICKER
-</div>
-<div class="doc-value">
-CLAUDE
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-MAX SUPPLY
-</div>
-<div class="doc-value">
-21000000
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-MINT LIMIT
-</div>
-<div class="doc-value">
-1000
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-CHAIN
-</div>
-<div class="doc-value">
-BASE
 </div>
 </div>
 
 </div>
 
+<div class="docs-content">
+
+<div class="panel">
+<div class="panel-header">01 / PROTOCOL</div>
+<div class="panel-body">
+
+CLAUDE20 is a Base-native ERC20 mint protocol with a fixed maximum supply of 21,000,000 tokens.
+
+Users mint directly from the deployed smart contract using Base ETH.
+
+Every accepted mint permanently increases on-chain supply and updates the live tracker.
+
+</div>
 </div>
 
 <div class="panel">
-
-<div class="panel-header">
-MINT JSON
-</div>
-
+<div class="panel-header">02 / MINT</div>
 <div class="panel-body">
 
-<div class="doc-block">
-<div class="doc-label">
-PROTOCOL
-</div>
-<div class="doc-value">
-claude-20
+Mint Amount : 1000 CLAUDE
+
+<br><br>
+
+Mint Fee : 0.000015 ETH
+
+<br><br>
+
+Network : Base Mainnet
+
 </div>
 </div>
 
-<div class="doc-block">
-<div class="doc-label">
-OPERATION
-</div>
-<div class="doc-value">
-mint
+<div class="panel">
+<div class="panel-header">03 / TOKENOMICS</div>
+<div class="panel-body">
+
+Total Supply : 21,000,000
+
+<br><br>
+
+Mint Size : 1000
+
+<br><br>
+
+Supply Model : Fixed
+
 </div>
 </div>
 
-<div class="doc-block">
-<div class="doc-label">
-TOKEN
-</div>
-<div class="doc-value">
-CLAUDE
-</div>
-</div>
+<div class="panel">
+<div class="panel-header">04 / CONTRACT</div>
+<div class="panel-body">
 
-<div class="doc-block">
-<div class="doc-label">
-AMOUNT
-</div>
-<div class="doc-value">
-1000
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-NETWORK
-</div>
-<div class="doc-value">
-Base Mainnet
-</div>
-</div>
-
-<div class="doc-block">
-<div class="doc-label">
-CONTRACT
-</div>
-<div
-class="doc-value"
-style="font-size:11px;">
 0x6ff250A9a2925a56958975bbcEf428086b83a7d8
+
 </div>
 </div>
 
+<div class="panel">
+<div class="panel-header">05 / JSON FORMAT</div>
+<div class="panel-body">
+
+<pre style="color:#ff8800;">
+{
+ "p":"claude-20",
+ "op":"mint",
+ "tick":"CLAUDE",
+ "amt":"1000"
+}
+</pre>
+
+</div>
 </div>
 
 </div>
