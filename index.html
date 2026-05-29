@@ -1855,9 +1855,13 @@ document
 
 function shareMintTwitter(){
 
+const tweetText =
+document.getElementById("twitter-preview").innerText;
+
 window.open(
 
-"https://twitter.com/intent/tweet?text=I%20just%20minted%201000%20CLAUDE20%20on%20Base%20Mainnet",
+"https://twitter.com/intent/tweet?text=" +
+encodeURIComponent(tweetText),
 
 "_blank"
 
