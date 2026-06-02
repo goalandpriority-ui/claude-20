@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjIzODAwNiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweGVmOTAzMTEwMTRBMWE3ZmY4MDMwNzlmQTVlOGIxMmQ3MjhGNjY0RUUifQ",
+    "payload": "eyJkb21haW4iOiJjbGF1ZGUyMC5zaXRlIn0",
+    "signature": "XxpTTNLnYhkoT9Tza+dDuhxLqHfKM9ph7oUr5LI8sgtNsV4E4HdSUc1TtkjkSHB6SZQTVXnJzPRPUbRfOsDeWhs="
+  },
+  "frame": {
+    "version": "1",
+    "name": "CLAUDE-20",
+    "iconUrl": "https://claude20.site/icon.png",
+    "homeUrl": "https://claude20.site",
+    "imageUrl": "https://claude20.site/image.png",
+    "buttonTitle": "Mint CLAUDE20",
+    "splashImageUrl": "https://claude20.site/splash.png",
+    "splashBackgroundColor": "#050505",
+    "webhookUrl": "https://claude20.site/api/webhook"
+  }
+}
