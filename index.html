@@ -1736,9 +1736,9 @@ I just minted 1000 CLAUDE on Base Mainnet.
 </div>
 
 <button
-class="btn-twitter"
-onclick="shareMintTwitter()">
-SHARE ON X
+class="btn-farcaster"
+onclick="shareMintFarcaster()"
+SHARE ON FARCASTER
 </button>
 
 <div style="height:12px;"></div>
@@ -1846,18 +1846,15 @@ document
 
 }
 
-function shareMintTwitter(){
+function shareMintFarcaster(){
 
-const tweetText =
-document.getElementById("twitter-preview").innerText;
+const text = encodeURIComponent(
+" I just minted 1000 CLAUDE on Base Mainnet!\n\n⚡ Public Mint Live\n https://claude20.site"
+);
 
 window.open(
-
-"https://twitter.com/intent/tweet?text=" +
-encodeURIComponent(tweetText),
-
+"https://warpcast.com/~/compose?text=" + text,
 "_blank"
-
 );
 
 }
