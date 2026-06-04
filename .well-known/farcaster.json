@@ -1,8 +1,8 @@
 {
   "accountAssociation": {
-    "header": "eyJmaWQiOjIzODAwNiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweGVmOTAzMTEwMTRBMWE3ZmY4MDMwNzlmQTVlOGIxMmQ3MjhGNjY0RUUifQ",
+    "header": "eyJmaWQiOjEzODAwNiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDdkMmUyMmVlNzI5NWZjNjIyNGExYTBhNGM1NzdjNTkxNzlkZTQ3NzMifQ",
     "payload": "eyJkb21haW4iOiJjbGF1ZGUyMC5zaXRlIn0",
-    "signature": "XxpTTNLnYhkoT9Tza+dDuhxLqHfKM9ph7oUr5LI8sgtNsV4E4HdSUc1TtkjkSHB6SZQTVXnJzPRPUbRfOsDeWhs="
+    "signature": "MHgxZjhmMmYwNGIzNGNiNDM1YzZlNjE2NDZiMjA3OGVlMDk3YzFiNjEyOWM2NDY0MzZjMjZkMDRkYzViMzNlNjE3ZTM3NWFiOTg0YzI2ZGQyMmFiN2Q0OTRjYTA1MDE1MTcxMDE4ZDZmYWQ3MzQ4ZjlhMzBmN2M2MzdmMGE3MDFi"
   },
   "frame": {
     "version": "1",
@@ -10,7 +10,7 @@
     "iconUrl": "https://claude20.site/icon.png",
     "homeUrl": "https://claude20.site",
     "imageUrl": "https://claude20.site/image.png",
-    "buttonTitle": "Mint CLAUDE20",
+    "buttonTitle": "Mint CLAUDE-20",
     "splashImageUrl": "https://claude20.site/splash.png",
     "splashBackgroundColor": "#050505",
     "webhookUrl": "https://claude20.site/api/webhook"
