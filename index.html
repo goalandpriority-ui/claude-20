@@ -2142,17 +2142,16 @@ const provider = new ethers.providers.Web3Provider(rawProvider, {
   name: "base"
 });
 
-const chainId =
-await rawProvider.request({
-method:'eth_chainId'
-});
-
 // BASE MAINNET CHECK
-if(chainId !== "0x2105"){
+  const isFarcaster =
+!!(window.fcSDK &&
+   window.fcSDK.wallet &&
+   window.fcSDK.wallet.ethProvider);
+
+if(!isFarcaster){
   // Farcaster Mini App — SDK provider doesn't support wallet_switch,
   // but Warpcast is always on Base. Warn and continue if Farcaster context.
-  const isFarcaster = !!(window.fcSDK && window.fcSDK.wallet && window.fcSDK.wallet.ethProvider);
-  if(isFarcaster){
+  
     // Farcaster is Base-native, ignore chain mismatch and proceed
     console.warn("Farcaster context: skipping chain switch, assuming Base");
   } else {
@@ -2183,8 +2182,7 @@ if(chainId !== "0x2105"){
         alert("Please switch to Base Mainnet in your wallet.");
         return;
       }
-      const newChainId = await rawProvider.request({ method: "eth_chainId" });
-      if(newChainId !== "0x2105"){ return; }
+      
     }
   }
 }
